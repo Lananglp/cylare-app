@@ -1,0 +1,35 @@
+{
+    "HomePage": {
+        "title": "Selamat datang di Next.js",
+        "description": "Mulai mengedit"
+    },
+    "LoginPage": {
+        "title": "Masuk ke akun Anda",
+        "description": "Masukkan alamat email Anda untuk masuk ke akun Anda",
+        "email": "Email",
+        "password": "Kata sandi",
+        "login": "Masuk",
+        "forgotPassword": "Lupa kata sandi?",
+        "footer": "Dengan mengklik lanjutkan, Anda menyetujui <terms>Ketentuan Layanan</terms> dan <privacy>Kebijakan Privasi</privacy> kami."
+    },
+    "RegisterPage": {
+        "title": "Buat akun Anda",
+        "description": "Masukkan alamat email Anda untuk membuat akun Anda",
+        "name": "Nama lengkap",
+        "email": "Email",
+        "password": "Kata sandi",
+        "confirmPassword": "Konfirmasi kata sandi",
+        "register": "Buat akun",
+        "forgotPassword": "Lupa kata sandi?",
+        "accountReady": "Sudah punya akun? <link>Masuk</link>",
+        "passwordInfo": "Kata sandi harus memiliki minimal 8 karakter.",
+        "footer": "Dengan mengklik lanjutkan, Anda menyetujui <terms>Ketentuan Layanan</terms> dan <privacy>Kebijakan Privasi</privacy> kami."
+    },
+    "LocaleSwitcher": {
+        "label": "Pilih bahasa"
+    },
+    "System": {
+        "loading": "Memuat...",
+        "language": "Bahasa"
+    }
+}

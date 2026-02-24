@@ -1,0 +1,35 @@
+{
+    "HomePage": {
+        "title": "Welcome to Next.js",
+        "description": "Get started by editing"
+    },
+    "LoginPage": {
+        "title": "Login to your account",
+        "description": "Enter your email below to login to your account",
+        "email": "Email",
+        "password": "Password",
+        "login": "Login",
+        "forgotPassword": "Forgot your password?",
+        "footer": "By clicking continue, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
+    },
+    "RegisterPage": {
+        "title": "Create your account",
+        "description": "Enter your email below to create your account",
+        "name": "Full name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "register": "Create Account",
+        "forgotPassword": "Forgot your password?",
+        "accountReady": "Already have an account? <link>Sign in</link>",
+        "passwordInfo": "Password must be at least 8 characters long.",
+        "footer": "By clicking continue, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
+    },
+    "LocaleSwitcher": {
+        "label": "Select language"
+    },
+    "System": {
+        "loading": "Loading...",
+        "language": "language"
+    }
+}
