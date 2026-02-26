@@ -450,24 +450,166 @@ function page() {
 
 
 
-            <div className="relative isolate pb-20 pt-40">
-                <div className="mx-auto max-w-4xl px-6 lg:px-8">
-                    <div className="mx-auto lg:text-center">
-                        <h2 className="text-base/7 font-semibold text-sky-400">Layanan yang Saya Tawarkan</h2>
-                        <p className="mt-2 text-4xl font-semibold leading-snug tracking-tight text-pretty text-white sm:text-5xl">
-                            Layanan Pembuatan Website Sesuai Kebutuhan Bisnis Anda
-                        </p>
-                        <p className="mt-6 text-lg/8 text-neutral-300">
-                            Setiap website dibangun dengan pendekatan yang disesuaikan dengan kebutuhan bisnis,
-                            mulai dari tampilan hingga fungsi yang mendukung aktivitas dan pertumbuhan usaha.
-                        </p>
-                        {/* <p className="mt-6 text-lg/8 text-neutral-300">
-                            Kepercayaan sering kali terbentuk dalam hitungan detik.
-                            Jika kesan pertama tidak meyakinkan, keputusan bisa dibuat tanpa Anda.
-                        </p> */}
+            <div className="relative isolate pb-20 pt-40 mx-auto max-w-7xl px-6 lg:px-8 space-y-12">
+                <div className='border-b border-border pb-12'>
+                    <h2 className="text-base/7 font-semibold text-sky-400">Layanan yang Saya Tawarkan</h2>
+                    <p className="mt-2 text-4xl font-semibold leading-snug tracking-tight text-pretty text-white sm:text-5xl">
+                        Jenis Website yang Bisa Anda Pilih
+                    </p>
+                    <div className="mt-6">
+                        <p className="text-lg/8">Saya menyediakan 3 jenis website yang paling umum digunakan bisnis.</p>
+                        <p className="text-lg/8">Strukturnya jelas, tujuannya jelas, dan tidak dibuat rumit.</p>
+                    </div>
+                    <div className="mt-6 max-w-3xl">
+                        <p className="text-neutral-300">Semua website dirancang ringan, cepat diakses, dan mudah dikelola.</p>
+                        <p className="text-neutral-300">Admin panel tersedia untuk kebutuhan seperti blog, update konten, atau data pendaftaran tanpa sistem yang terlalu kompleks.</p>
                     </div>
                 </div>
-                <div className="mx-auto mt-16 sm:mt-20 lg:mt-24 max-w-7xl px-6 xl:px-0">
+                <div className='mx-auto max-w-7xl space-y-20'>
+                    <div>
+                        <div className='flex space-x-8 lg:ps-6'>
+                            <div className='hidden lg:block text-9xl font-bold pe-3'>
+                                <span>1</span>
+                            </div>
+                            <div className='w-full'>
+                                <h3 className='mb-4 pb-4 text-3xl border-b border-border font-semibold leading-snug tracking-tight text-pretty text-white sm:text-4xl'>Landing Page</h3>
+                                <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 border-b border-border lg:divide-x lg:divide-border pb-4 mb-8'>
+                                    <div className='lg:col-span-7'>
+                                        <p className="mb-6 text-lg/8">Fokus pada satu tujuan utama.</p>
+                                        <p className="text-neutral-300">Website satu halaman atau beberapa section yang diarahkan untuk satu aksi:</p>
+                                        <p className="mb-6 text-neutral-300">menghubungi, mendaftar, atau melakukan pemesanan.</p>
+                                        <p className="mb-6 text-neutral-300">Cocok untuk promosi yang spesifik dan terarah.</p>
+                                    </div>
+                                    <div className='lg:col-span-5'>
+                                        <h6 className='mb-2 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Cocok digunakan untuk:</h6>
+                                        <ul className="mb-6 ps-8 list-disc text-neutral-300">
+                                            <li>Promosi satu layanan unggulan</li>
+                                            <li>Iklan berbayar (Meta Ads / Google Ads)</li>
+                                            <li>Pendaftaran event atau webinar</li>
+                                            <li>Pre-order produk</li>
+                                            <li>Campaign promo terbatas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className=''>
+                                    <h6 className='mb-4 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Contoh Implementasi Nyata:</h6>
+                                    <ul className='flex flex-wrap items-center gap-2'>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Landing page jasa pembuatan rumah dengan tombol “Konsultasi via WhatsApp”</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Halaman promosi kursus Bahasa Inggris dengan form pendaftaran</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Landing page event lomba sekolah dengan sistem daftar online</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Halaman promo klinik gigi dengan diskon scaling</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Landing page jasa desain interior khusus apartemen</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Halaman promosi catering pernikahan</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Landing page jasa instalasi solar panel</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Halaman pendaftaran gym dengan paket membership</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div className='flex space-x-8 lg:ps-6'>
+                            <div className='hidden lg:block text-9xl font-bold pe-3'>
+                                <span>2</span>
+                            </div>
+                            <div className='w-full'>
+                                <h3 className='mb-4 pb-4 text-3xl border-b border-border font-semibold leading-snug tracking-tight text-pretty text-white sm:text-4xl'>Company Profile</h3>
+                                <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 border-b border-border lg:divide-x lg:divide-border pb-4 mb-8'>
+                                    <div className='lg:col-span-7'>
+                                        <p className="mb-6 text-lg/8">Menampilkan identitas dan membangun kepercayaan.</p>
+                                        <p className="text-neutral-300">Website ini berfungsi sebagai wajah resmi bisnis Anda di internet.</p>
+                                        <p className="mb-6 text-neutral-300">Bukan untuk promosi satu produk saja, tapi untuk menunjukkan siapa Anda dan apa yang Anda kerjakan.</p>
+                                    </div>
+                                    <div className='lg:col-span-5'>
+                                        <h6 className='mb-2 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Biasanya terdiri dari:</h6>
+                                        <ul className="mb-6 grid grid-cols-2 ps-8 list-disc text-neutral-300">
+                                            <li>Beranda</li>
+                                            <li>Tentang Kami</li>
+                                            <li>Layanan</li>
+                                            <li>Portofolio / Proyek</li>
+                                            <li>Blog (opsional)</li>
+                                            <li>Kontak</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className=''>
+                                    <h6 className='mb-4 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Contoh Implementasi Nyata:</h6>
+                                    <ul className='flex flex-wrap items-center gap-2'>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website perusahaan kontraktor dengan daftar proyek bangunan</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website konsultan pajak dengan profil tim dan layanan</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website klinik kesehatan dengan profil dokter</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website perusahaan distribusi barang</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website arsitek dengan galeri desain rumah</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website travel agent dengan daftar paket wisata</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website perusahaan outsourcing</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website sekolah atau lembaga kursus</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website notaris atau kantor hukum</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website startup teknologi yang ingin tampil lebih kredibel</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div className='flex space-x-8 lg:ps-6'>
+                            <div className='hidden lg:block text-9xl font-bold pe-3'>
+                                <span>3</span>
+                            </div>
+                            <div className='w-full'>
+                                <h3 className='mb-4 pb-4 text-3xl border-b border-border font-semibold leading-snug tracking-tight text-pretty text-white sm:text-4xl'>Website Katalog Produk (E-Commerce Sederhana)</h3>
+                                <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 border-b border-border lg:divide-x lg:divide-border pb-4 mb-8'>
+                                    <div className='lg:col-span-4'>
+                                        {/* <p className="mb-6 text-lg/8">Fokus pada satu tujuan utama.</p> */}
+                                        <p className="text-neutral-300">Ini bukan marketplace besar.</p>
+                                        <p className="text-neutral-300">Tidak ada sistem checkout kompleks.</p>
+                                        <p className="mb-6 text-neutral-300">Tidak ada payment gateway otomatis.</p>
+                                        <p className="mb-6 text-neutral-300">Website ini berfungsi sebagai etalase digital.</p>
+                                    </div>
+                                    <div className='lg:col-span-4'>
+                                        <h6 className='mb-2 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Pengunjung bisa:</h6>
+                                        <ul className="mb-6 ps-8 list-disc text-neutral-300">
+                                            <li>Melihat daftar produk</li>
+                                            <li>Melihat detail produk</li>
+                                            <li>Melihat foto dan deskripsi</li>
+                                            <li>Lalu klik tombol untuk menghubungi via WhatsApp</li>
+                                        </ul>
+                                        <p className="text-neutral-300 italic">Transaksi dilakukan langsung melalui chat.</p>
+                                    </div>
+                                    <div className='lg:col-span-4'>
+                                        <h6 className='mb-2 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Cocok untuk:</h6>
+                                        <ul className="mb-6 ps-8 list-disc text-neutral-300">
+                                            <li>UMKM</li>
+                                            <li>Toko lokal</li>
+                                            <li>Bisnis rumahan</li>
+                                            <li>Brand yang ingin terlihat lebih rapi dibanding jualan di Instagram saja</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className=''>
+                                    <h6 className='mb-4 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Contoh Implementasi Nyata:</h6>
+                                    <ul className='flex flex-wrap items-center gap-2'>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko pakaian dengan katalog dan tombol “Pesan via WhatsApp”</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko skincare dengan daftar produk dan harga</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Penjual furniture custom dengan galeri produk</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko oleh-oleh khas daerah</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Supplier bahan bangunan</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko sembako lokal</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Penjual helm dan aksesoris motor</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko bunga dengan katalog rangkaian</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Jasa percetakan dengan daftar paket cetak</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Penjual hampers lebaran atau natal</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Brand sepatu lokal</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Jasa sablon kaos</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Penjual tanaman hias</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko alat pancing</li>
+                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Penjual frozen food rumahan</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <div className="mx-auto mt-16 sm:mt-20 lg:mt-24 max-w-7xl px-6 xl:px-0">
                     <dl className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {services.map((feature) => (
                             <div key={feature.name} className="relative pl-20 bg-sky-800/20 p-6 rounded-2xl">
@@ -481,7 +623,7 @@ function page() {
                             </div>
                         ))}
                     </dl>
-                </div>
+                </div> */}
                 <div
                     aria-hidden="true"
                     className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-40"
@@ -572,6 +714,16 @@ function page() {
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
+            <div className='mx-auto max-w-7xl text-center p-8 border border-border rounded-3xl mt-20'>Portfolio / Case Study</div>
+            <div className='mx-auto max-w-7xl text-center p-8 border border-border rounded-3xl mt-20'>Social Proof</div>
+            <div className='mx-auto max-w-7xl text-center p-8 border border-border rounded-3xl mt-20'>Blog Preview (3 Artikel Terbaru)</div>
+            <div className='mx-auto max-w-7xl text-center p-8 border border-border rounded-3xl mt-20'>Final CTA</div>
 
 
 
