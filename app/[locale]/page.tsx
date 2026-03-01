@@ -1,738 +1,625 @@
 "use client"
-import { AppHeader } from '@/components/app/header';
-import LanguageSwitcher from '@/components/language-switcher';
-import { Button } from '@/components/ui/button';
-import { authClient } from '@/lib/auth-client';
-import { dataItems } from '@/types/global';
-import { ArrowUpRightIcon, BadgeCheckIcon, CircleIcon, CloudAlertIcon, CodeXmlIcon, EyeOffIcon, HeartOffIcon, PanelRightIcon, RocketIcon, SearchIcon, StarIcon, ThumbsDownIcon, TrendingDownIcon } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
-import Image from 'next/image';
-import Link from 'next/link';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { Link } from '@/i18n/navigation'
+import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react';
 
 function page() {
-    const language = useTranslations("HomePage");
-    const { 
-        data: session, 
-        isPending, //loading state
-        error, //error object
-        refetch //refetch the session
-    } = authClient.useSession();
 
-    const features = [
-        {
-            name: 'Sulit Ditemukan',
-            description:
-                'Sebagian besar pelanggan mencari informasi melalui internet. Tanpa website, bisnis Anda lebih sulit ditemukan dan dipertimbangkan.',
-            icon: EyeOffIcon,
-        },
-        {
-            name: 'Diragukan Kredibilitasnya',
-            description:
-                'Ketika tidak ada sumber informasi resmi, calon pelanggan bisa meragukan keaslian dan profesionalitas usaha Anda.',
-            icon: HeartOffIcon,
-        },
-        {
-            name: 'Kehilangan Peluang',
-            description:
-                'Banyak keputusan dibuat sebelum Anda sempat berbicara. Tanpa kehadiran online yang jelas, peluang dapat berpindah ke kompetitor.',
-            icon: TrendingDownIcon,
-        },
-        {
-            name: 'Tertinggal dari Kompetitor',
-            description:
-                'Bisnis lain sudah membangun identitas digital yang kuat. Ketidakhadiran website membuat Anda terlihat kurang siap di tengah persaingan.',
-            icon: ThumbsDownIcon,
-        },
-    ]
+    const navRef = useRef<HTMLElement>(null);
 
-    const solution = [
-        {
-            name: 'Mudah Ditemukan',
-            description:
-                'Website membantu bisnis Anda hadir di hasil pencarian dan menjadi sumber informasi resmi yang dapat diakses kapan saja.',
-            icon: SearchIcon,
-        },
-        {
-            name: 'Identitas yang Jelas',
-            description:
-                'Menampilkan profil, layanan, dan nilai bisnis secara terstruktur sehingga pengunjung memahami siapa Anda dan apa yang Anda tawarkan.',
-            icon: BadgeCheckIcon,
-        },
-        {
-            name: 'Mengarahkan Keputusan',
-            description:
-                'Informasi yang lengkap dan tersusun rapi membantu calon pelanggan mengambil keputusan dengan lebih yakin.',
-            icon: ArrowUpRightIcon,
-        },
-        {
-            name: 'Siap Berkembang',
-            description:
-                'Website dapat dikembangkan sesuai kebutuhan bisnis, baik untuk promosi, sistem pemesanan, maupun ekspansi layanan.',
-            icon: RocketIcon,
-        }
-    ]
+    useEffect(() => {
+        const handleScroll = () => {
+            if (navRef.current) {
+                if (window.scrollY > 20) {
+                    // Tambah border saat scroll
+                    navRef.current.classList.add("bg-slate-950", "border-border");
+                    navRef.current.classList.remove("bg-transparent", "border-transparent");
+                } else {
+                    // Hilangkan border saat di atas
+                    navRef.current.classList.add("bg-transparent", "border-transparent");
+                    navRef.current.classList.remove("bg-slate-950", "border-border");
+                }
+            }
+        };
 
-    const services = [
-        {
-            name: 'Website Company Profile',
-            description:
-                'Menampilkan profil bisnis, layanan, portofolio, dan informasi kontak secara jelas untuk membangun identitas yang kuat.',
-            icon: CodeXmlIcon,
-        },
-        {
-            name: 'Website Custom',
-            description:
-                'Pengembangan website dengan fitur khusus sesuai kebutuhan, seperti sistem pemesanan, dashboard, atau integrasi lainnya.',
-            icon: CodeXmlIcon,
-        },
-        {
-            name: 'Tampilan Multi Perangkat',
-            description:
-                'Dirancang agar tetap nyaman digunakan di desktop, tablet, maupun smartphone.',
-            icon: CodeXmlIcon,
-        },
-        {
-            name: 'Pengelolaan Konten',
-            description:
-                'Memungkinkan Anda mengelola artikel, produk, atau informasi tanpa perlu memahami teknis pemrograman.',
-            icon: CodeXmlIcon,
-        },
-        {
-            name: 'Optimasi Dasar SEO',
-            description:
-                'Struktur website disiapkan agar mudah diindeks mesin pencari dan mendukung visibilitas bisnis Anda.',
-            icon: CodeXmlIcon,
-        },
-        {
-            name: 'Pengembangan Berkelanjutan',
-            description:
-                'Website dapat dikembangkan lebih lanjut sesuai pertumbuhan dan kebutuhan bisnis di masa depan.',
-            icon: CodeXmlIcon,
-        }
-    ]
+        window.addEventListener("scroll", handleScroll);
+        // Jalankan sekali saat mount untuk cek posisi awal
+        handleScroll();
 
-    const superiorities = [
-        {
-            name: 'Dikembangkan Secara Kustom',
-            description:
-                'Website dibangun langsung melalui proses pengembangan kode, sehingga tampilan dan fungsinya dapat disesuaikan secara lebih fleksibel sesuai kebutuhan bisnis Anda. Pendekatan ini memberikan ruang pengembangan yang lebih luas dibandingkan platform instan yang memiliki batasan sistem.',
-            icon: StarIcon,
-        },
-        {
-            name: 'Dirancang Berdasarkan Tujuan Bisnis',
-            description:
-                'Setiap bagian website dirancang dengan mempertimbangkan kebutuhan komunikasi, target pasar, dan arah pertumbuhan usaha Anda.',
-            icon: StarIcon,
-        },
-        {
-            name: 'Siap Dikembangkan',
-            description:
-                'Website tidak hanya dibuat untuk kebutuhan saat ini, tetapi disiapkan agar dapat dikembangkan di masa depan tanpa harus membangun ulang dari awal.',
-            icon: StarIcon,
-        },
-        {
-            name: 'Proses Pengembangan yang Transparan',
-            description:
-                'Setiap tahap pengerjaan dikomunikasikan secara terbuka, sehingga Anda mengetahui perkembangan proyek dan dapat memberikan masukan sebelum tahap berikutnya dimulai.',
-            icon: StarIcon,
-        },
-        {
-            name: 'Estimasi Waktu yang Realistis',
-            description:
-                'Durasi pengerjaan disesuaikan dengan tingkat kompleksitas dan revisi yang dibutuhkan. Setiap proyek memiliki karakteristik berbeda, sehingga estimasi waktu akan disampaikan secara transparan di awal dan dapat menyesuaikan jika terjadi perubahan kebutuhan.',
-            icon: StarIcon,
-        },
-    ]
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
-        // <div>
-        //     <AppHeader />
-        //     <p>{session?.user.email}</p>
-        //     <h1>{language("title")}</h1>
-        //     <p>{language("description")}</p>
-        //     <Link href="/sign-in">login</Link>
-        //     <Link href="/sign-up">register</Link>
-        // </div>
-        <div className='bg-sky-800/20'>
-            <div className="">
-                <header className="fixed inset-x-0 top-0 z-50 px-3 py-2 backdrop-blur-sm">
-                    <nav aria-label="Global" className="max-w-5xl mx-auto flex items-center justify-between">
-                        <div className="flex lg:flex-1">
-                            <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
-                                <span className="sr-only">Cylare</span>
-                                <img
-                                    alt=""
-                                    src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                                    className="size-8"
-                                />
-                                <span className='inline-block font-medium'>Cylare</span>
-                            </a>
-                        </div>
-                        <div className="flex lg:hidden">
-                            <Button
-                                type="button"
-                                variant={"ghost"}
-                                // onClick={() => setMobileMenuOpen(true)}
-                                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-neutral-200"
-                            >
-                                <span className="sr-only">Open main menu</span>
-                                <PanelRightIcon aria-hidden="true" className="size-6" />
-                            </Button>
-                        </div>
-                        <div className="hidden lg:flex lg:gap-x-12">
-                            {dataItems.navbar.map((item) => (
-                                <a key={item.name} href={item.href} className="text-sm/6 text-white">
-                                    {item.name}
-                                </a>
-                            ))}
-                        </div>
-                        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                            <a href="#" className="text-sm/6 font-semibold text-white">
-                                Log in <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
-                    </nav>
-                    {/* <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-                        <div className="fixed inset-0 z-50" />
-                        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-neutral-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-neutral-100/10">
-                            <div className="flex items-center justify-between">
-                                <a href="#" className="-m-1.5 p-1.5">
-                                    <span className="sr-only">Your Company</span>
-                                    <img
-                                        alt=""
-                                        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                                        className="h-8 w-auto"
-                                    />
-                                </a>
-                                <button
-                                    type="button"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="-m-2.5 rounded-md p-2.5 text-neutral-200"
-                                >
-                                    <span className="sr-only">Close menu</span>
-                                    <XMarkIcon aria-hidden="true" className="size-6" />
-                                </button>
+        <div className='bg-slate-950 selection:bg-sky-500/30 selection:text-sky-200'>
+            {/* Navigation */}
+            <nav
+                ref={navRef}
+                className="fixed w-full z-50 bg-transparent border-b border-transparent transition-all duration-300"
+            >
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-between items-center py-3">
+                        <Link href="/" className="shrink-0 flex items-center gap-2 cursor-pointer">
+                            {/* <Image src="/logo.svg" alt="Logo" width={40} height={40} className='rounded-full' /> */}
+                            <div className='flex items-center gap-2'>
+                                <span className="block font-bold text-lg sm:text-xl tracking-tight text-white">Cylare</span>
+                                <span className='block text-[12px] sm:text-xs text-muted-foreground'>by Lanang Lanusa</span>
                             </div>
-                            <div className="mt-6 flow-root">
-                                <div className="-my-6 divide-y divide-white/10">
-                                    <div className="space-y-2 py-6">
-                                        {navigation.map((item) => (
-                                            <a
-                                                key={item.name}
-                                                href={item.href}
-                                                className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-                                            >
-                                                {item.name}
-                                            </a>
-                                        ))}
-                                    </div>
-                                    <div className="py-6">
-                                        <a
-                                            href="#"
-                                            className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
-                                        >
-                                            Log in
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </DialogPanel>
-                    </Dialog> */}
-                </header>
-
-                <div className="relative isolate px-6 pt-14 lg:px-8">
-                    <div className='absolute -z-10 inset-0 bg-linear-to-tr from-transparent blur-3xl to-sky-800/20 from-70% to-70%' />
-                    <div className='absolute -z-10 inset-0 bg-linear-to-bl from-transparent blur-3xl to-sky-800/20 from-70% to-70%' />
-                    {/* <div className='absolute -z-10 inset-x-0 top-24 p-10 -rotate-8 flex items-center justify-center bg-linear-to-tr from-neutral-950 to-transparent from-0% to-100%'></div> */}
-                    {/* <div className='absolute -z-10 inset-x-0 bottom-24 rotate-8 p-10 flex items-center justify-center bg-linear-to-t from-neutral-950/20 to-transparent from-0% to-100%'></div> */}
-                    <div
-                        aria-hidden="true"
-                        className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-                    >
-                        <div
-                            style={{
-                                clipPath:
-                                    'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                            }}
-                            className="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-sky-400 to-sky-900 opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"
-                        />
-                    </div>
-
-                    <div
-                        aria-hidden="true"
-                        className="absolute inset-x-0 top-32 -z-10 transform-gpu overflow-hidden blur-3xl"
-                    >
-                        <div
-                            style={{
-                                clipPath:
-                                    'ellipse(49% 15% at 50% 50%)',
-                            }}
-                            className="relative left-[calc(50%-40rem)] aspect-square w-144.5 translate-y-1/2 -rotate-30 bg-linear-to-tr from-sky-400 to-sky-900 opacity-30"
-                        />
-                    </div>
-                    <div className="mx-auto max-w-5xl py-32 sm:py-48 lg:py-56">
-                        <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                            <div className="relative rounded-full px-3 py-1 text-sm/6 text-neutral-400 ring-1 ring-white/10 hover:ring-white/20">
-                                Announcing our next round of funding.{' '}
-                                <a href="#" className="font-semibold text-sky-400">
-                                    <span aria-hidden="true" className="absolute inset-0" />
-                                    Read more <span aria-hidden="true">&rarr;</span>
-                                </a>
-                            </div>
+                        </Link>
+                        <div className="hidden lg:flex space-x-6 items-center">
+                            <a href="#masalah" className="text-slate-400 hover:text-sky-400 text-sm font-medium transition">Problem</a>
+                            <a href="#solusi" className="text-slate-400 hover:text-sky-400 text-sm font-medium transition">Kenapa Kami</a>
+                            <a href="#simulasi" className="text-slate-400 hover:text-sky-400 text-sm font-medium transition">Simulasi</a>
+                            <a href="#proses" className="text-slate-400 hover:text-sky-400 text-sm font-medium transition">Proses</a>
+                            <a href="#harga" className="text-slate-400 hover:text-sky-400 text-sm font-medium transition">Harga</a>
+                            <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20saya%20tertarik%20konsultasi%20website" target="_blank" className="bg-sky-500 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-sky-600 transition shadow-lg shadow-sky-500/20">Chat Sekarang</a>
                         </div>
-                        <div className="text-center">
-                            <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">
-                                Website adalah fondasi kepercayaan di <span className='text-shadow-[0_0px_20px_rgb(0_150_200/0.5)]'>era digital</span>
-                            </h1>
-                            <p className="mt-8 text-lg font-medium text-pretty text-neutral-400 sm:text-xl/8">
-                                Sebagian besar pelanggan mencari dan membandingkan bisnis melalui internet.
-                                Website membantu membangun kredibilitas dan menunjukkan bahwa usaha Anda siap berkembang
-                            </p>
-                            <div className="mt-10 flex items-center justify-center gap-x-6">
-                                <a
-                                    href="#"
-                                    className="rounded-md bg-sky-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-sky-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                                >
-                                    Get started
-                                </a>
-                                <a href="#" className="text-sm/6 font-semibold text-white">
-                                    Learn more <span aria-hidden="true">→</span>
-                                </a>
-                            </div>
+                        <div className="lg:hidden flex items-center">
+                            <button id="mobile-menu-btn" className="text-slate-400 focus:outline-none">
+                                <span className="text-2xl">☰</span>
+                            </button>
                         </div>
                     </div>
-                    <div
-                        aria-hidden="true"
-                        className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-                    >
-                        <div
-                            style={{
-                                clipPath:
-                                    'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                            }}
-                            className="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-sky-400 to-sky-900 opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
-                        />
-                    </div>
-                    {/* <div className='absolute inset-x-0 bottom-0 p-10 flex items-center justify-center'>
-                        <div className='relative inline-block w-72 h-10 rounded-tr-full border-t-2'>
-                            <div className='absolute -left-10 -top-4 inline-block w-72 h-4 rounded-tr-full border-t-2'></div>
-                            <div className='absolute -left-20 -top-8 inline-block w-72 h-4 rounded-tr-full border-t-2'></div>
-                        </div>
-                        <div className='relative inline-block w-72 h-10 rounded-tl-full border-t-2 border-t-'>
-                            <div className='absolute -right-10 -top-4 inline-block w-72 h-4 rounded-tl-full border-t-2 border-t-'></div>
-                            <div className='absolute -right-20 -top-8 inline-block w-72 h-4 rounded-tl-full border-t-2 border-t-'></div>
-                        </div>
-                    </div> */}
                 </div>
-            </div>
-            
-            {/* <div className="bg-neutral-900 py-24 sm:py-32"> */}
-            <div className="relative isolate py-20">
-                <div className="mx-auto max-w-4xl px-6 lg:px-8">
-                    <div className="mx-auto lg:text-center">
-                        <h2 className="text-base/7 font-semibold text-sky-400">Realita Bisnis Digital</h2>
-                        <p className="mt-2 text-4xl font-semibold leading-snug tracking-tight text-pretty text-white sm:text-5xl">
-                            Apa yang Terjadi Jika Bisnis Anda Tidak Memiliki Website?
-                        </p>
-                        <p className="mt-6 text-lg/8 text-neutral-300">
-                            Di era digital, orang menilai kredibilitas dari jejak online.
-                            Tidak adanya website dapat menimbulkan pertanyaan tentang keseriusan dan stabilitas bisnis Anda.
-                        </p>
-                        {/* <p className="mt-6 text-lg/8 text-neutral-300">
-                            Kepercayaan sering kali terbentuk dalam hitungan detik.
-                            Jika kesan pertama tidak meyakinkan, keputusan bisa dibuat tanpa Anda.
-                        </p> */}
-                    </div>
-                    <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-                        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-                            {features.map((feature) => (
-                                <div key={feature.name} className="relative pl-16">
-                                    <dt className="text-base/7 font-semibold text-white">
-                                        <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-sky-800 shadow-xl shadow-neutral-900">
-                                            <feature.icon aria-hidden="true" className="size-6 text-white" />
-                                        </div>
-                                        {feature.name}
-                                    </dt>
-                                    <dd className="mt-2 text-base/7 text-neutral-400">{feature.description}</dd>
-                                </div>
-                            ))}
-                        </dl>
+                {/* Mobile Menu */}
+                <div id="mobile-menu" className="hidden lg:hidden bg-slate-950 border-t border-slate-800">
+                    <div className="px-4 pt-2 pb-6 space-y-2">
+                        <a href="#masalah" className="block px-3 py-2 text-slate-300 font-medium">Problem</a>
+                        <a href="#solusi" className="block px-3 py-2 text-slate-300 font-medium">Kenapa Kami</a>
+                        <a href="#simulasi" className="block px-3 py-2 text-slate-300 font-medium">Simulasi Proyek</a>
+                        <a href="#proses" className="block px-3 py-2 text-slate-300 font-medium">Cara Kerja</a>
+                        <a href="#harga" className="block px-3 py-2 text-slate-300 font-medium">Harga</a>
                     </div>
                 </div>
-                <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-40rem)]"
-                >
-                    <div
-                        style={{
-                            clipPath:
-                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                        }}
-                        className="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-90 bg-linear-to-tr from-sky-400 to-sky-900 opacity-30 sm:left-[calc(50%-20rem)] sm:w-288.75"
-                    />
+            </nav>
+            {/* Hero Section */}
+            <section className="relative isolate pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+                <div className='absolute inset-0 -z-20 grid grid-cols-12 divide-x divide-slate-900'>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div className="relative isolate py-20 bg-sky-800/20">
-                <div className="mx-auto max-w-5xl xl:max-w-7xl grid grid-cols-1 xl:grid-cols-12 gap-12 px-6 xl:px-0">
-                    <div className="col-span-6 my-auto mx-auto lg:max-w-3xl xl:max-w-none lg:text-center xl:text-start">
-                        <h2 className="text-base/7 font-semibold text-sky-400">Solusi untuk Bisnis Anda</h2>
-                        <p className="mt-2 text-4xl font-semibold leading-snug tracking-tight text-pretty text-white sm:text-5xl">
-                            Website yang Mewakili dan Menguatkan Bisnis Anda
-                        </p>
-                        <p className="mt-6 text-lg/8 text-neutral-300">
-                            Website yang tepat tidak hanya membuat bisnis Anda terlihat,
-                            tetapi membantu pengunjung memahami siapa Anda, apa yang Anda tawarkan,
-                            dan mengapa mereka harus memilih Anda.
-                        </p>
+                <div className='absolute inset-0 -z-20 bg-radial from-transparent to-slate-950'/>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
+                    <div className="absolute top-20 left-[calc(50%-24rem)] w-72 h-72 bg-sky-400/10 rounded-full blur-[120px]" />
+                    <div className="absolute bottom-20 right-[calc(50%-24rem)] w-96 h-96 bg-sky-400/10 rounded-full blur-[120px]" />
+                </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div className="inline-flex items-center gap-2 py-1 px-4 rounded-full bg-slate-900 border border-slate-800 text-sky-400 text-xs font-bold mb-8 uppercase tracking-widest">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500" />
+                        </span>
+                        Menerima 3 Klien Bulan Ini
                     </div>
-                    <div className="col-span-6 p-6">
-                        <dl className="space-y-8 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-1">
-                            {solution.map((feature) => (
-                                <div key={feature.name} className="relative pl-16">
-                                    <dt className="text-base/7 font-semibold text-white">
-                                        <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-sky-800 shadow-xl shadow-neutral-900">
-                                            <feature.icon aria-hidden="true" className="size-6 text-white" />
-                                        </div>
-                                        {feature.name}
-                                    </dt>
-                                    <dd className="mt-2 text-base/7 text-neutral-400">{feature.description}</dd>
-                                </div>
-                            ))}
-                        </dl>
-                    </div>
-                </div>
-                <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-40rem)]"
-                >
-                    <div
-                        style={{
-                            clipPath:
-                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                        }}
-                        className="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-90 bg-linear-to-tr from-sky-400 to-sky-900 opacity-30 sm:left-[calc(50%-20rem)] sm:w-288.75"
-                    />
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div className="relative isolate pb-20 pt-40 mx-auto max-w-7xl px-6 lg:px-8 space-y-12">
-                <div className='border-b border-border pb-12'>
-                    <h2 className="text-base/7 font-semibold text-sky-400">Layanan yang Saya Tawarkan</h2>
-                    <p className="mt-2 text-4xl font-semibold leading-snug tracking-tight text-pretty text-white sm:text-5xl">
-                        Jenis Website yang Bisa Anda Pilih
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-8">
+                        Website Anda Harusnya Jadi <br /><span className="bg-linear-to-r from-sky-200 to-sky-400 bg-clip-text text-transparent">Mesin Penjualan 24/7.</span>
+                    </h1>
+                    <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10 leading-relaxed">
+                        Sudah bukan zamannya website cuma jadi brosur online yang sepi. Kami rancang alur website yang "memaksa" pengunjung penasaran dan berujung chat ke WhatsApp Anda.
                     </p>
-                    <div className="mt-6">
-                        <p className="text-lg/8">Saya menyediakan 3 jenis website yang paling umum digunakan bisnis.</p>
-                        <p className="text-lg/8">Strukturnya jelas, tujuannya jelas, dan tidak dibuat rumit.</p>
-                    </div>
-                    <div className="mt-6 max-w-3xl">
-                        <p className="text-neutral-300">Semua website dirancang ringan, cepat diakses, dan mudah dikelola.</p>
-                        <p className="text-neutral-300">Admin panel tersedia untuk kebutuhan seperti blog, update konten, atau data pendaftaran tanpa sistem yang terlalu kompleks.</p>
+                    <div className="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20saya%20mau%20konsultasi%20strategi%20website%20gratis" target="_blank" className="px-8 py-4 bg-sky-500 text-white font-bold rounded-xl hover:bg-sky-600 transition-all shadow-xl shadow-sky-500/20 transform hover:-translate-y-1">
+                            Konsultasi Gratis Sekarang ➔
+                        </a>
+                        <a href="#simulasi" className="px-8 py-4 bg-slate-900 text-white font-bold border border-slate-800 rounded-xl hover:bg-slate-800 transition">
+                            Lihat Simulasi Proyek
+                        </a>
                     </div>
                 </div>
-                <div className='mx-auto max-w-7xl space-y-20'>
-                    <div>
-                        <div className='flex space-x-8 lg:ps-6'>
-                            <div className='hidden lg:block text-9xl font-bold pe-3'>
-                                <span>1</span>
-                            </div>
-                            <div className='w-full'>
-                                <h3 className='mb-4 pb-4 text-3xl border-b border-border font-semibold leading-snug tracking-tight text-pretty text-white sm:text-4xl'>Landing Page</h3>
-                                <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 border-b border-border lg:divide-x lg:divide-border pb-4 mb-8'>
-                                    <div className='lg:col-span-7'>
-                                        <p className="mb-6 text-lg/8">Fokus pada satu tujuan utama.</p>
-                                        <p className="text-neutral-300">Website satu halaman atau beberapa section yang diarahkan untuk satu aksi:</p>
-                                        <p className="mb-6 text-neutral-300">menghubungi, mendaftar, atau melakukan pemesanan.</p>
-                                        <p className="mb-6 text-neutral-300">Cocok untuk promosi yang spesifik dan terarah.</p>
-                                    </div>
-                                    <div className='lg:col-span-5'>
-                                        <h6 className='mb-2 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Cocok digunakan untuk:</h6>
-                                        <ul className="mb-6 ps-8 list-disc text-neutral-300">
-                                            <li>Promosi satu layanan unggulan</li>
-                                            <li>Iklan berbayar (Meta Ads / Google Ads)</li>
-                                            <li>Pendaftaran event atau webinar</li>
-                                            <li>Pre-order produk</li>
-                                            <li>Campaign promo terbatas</li>
-                                        </ul>
+                <div className="mt-16 flex justify-center items-center gap-8 text-muted-foreground grayscale opacity-70">
+                    {/* Simple unicode placeholders for "Clients" to imply social proof without specific logos */}
+                    <span className="text-2xl font-bold">UMKM INDONESIA</span>
+                    <span className="text-2xl font-bold">•</span>
+                    <span className="text-2xl font-bold">STARTUP LOKAL</span>
+                    <span className="text-2xl font-bold">•</span>
+                    <span className="text-2xl font-bold">BRAND PERSONAL</span>
+                </div>
+            </section>
+            {/* SECTION 1: Agitation / The Real Problem */}
+            <section id="masalah" className="relative isolate overflow-hidden py-24 bg-slate-900/30">
+                <div className="absolute top-0 right-[calc(50%-50rem)] w-80 h-80 blur-3xl bg-sky-500/10 rounded-bl-full" />
+                <div className="absolute top-0 left-[calc(50%-50rem)] w-80 h-80 blur-3xl bg-sky-500/10 rounded-br-full" />
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Kenapa Bisnis Anda Butuh Website <span className="text-sky-400">Sekarang?</span></h2>
+                        <p className="text-slate-400 text-lg max-w-2xl mx-auto">Jujur saja, ngandelin satu platform sosial media itu bahaya. Algoritma berubah, bisnis Anda bisa anjlok besok pagi.</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div className="bg-slate-900 border border-border hover:border-sky-500/50 transition duration-300 hover:-translate-y-2 p-6 rounded-2xl card-hover relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-8 blur-3xl bg-sky-500/75 rounded-bl-full" />
+                            <div className="text-3xl mb-4">💬</div>
+                            <h3 className="font-bold text-white mb-2">DM Numpuk, Closing Lama</h3>
+                            <p className="text-sm text-slate-400">Jawab pertanyaan yang itu-itu saja tiap hari di IG/WA bikin admin capek. Pembeli keburu lari ke kompetitor yang pelayanannya instan.</p>
+                        </div>
+                        <div className="bg-slate-900 border border-border hover:border-sky-500/50 transition duration-300 hover:-translate-y-2 p-6 rounded-2xl card-hover relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-8 blur-3xl bg-sky-500/75 rounded-bl-full" />
+                            <div className="text-3xl mb-4">🔍</div>
+                            <h3 className="font-bold text-white mb-2">Gak Muncul di Google</h3>
+                            <p className="text-sm text-slate-400">Saat orang ketik "Jasa [Bisnis Anda] terdekat", yang muncul kompetitor Anda. Anda kehilangan pembeli yang sudah siap bayar.</p>
+                        </div>
+                        <div className="bg-slate-900 border border-border hover:border-sky-500/50 transition duration-300 hover:-translate-y-2 p-6 rounded-2xl card-hover relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-8 blur-3xl bg-sky-500/75 rounded-bl-full" />
+                            <div className="text-3xl mb-4">⚠️</div>
+                            <h3 className="font-bold text-white mb-2">Rawan Banned &amp; Algoritma</h3>
+                            <p className="text-sm text-slate-400">Akun IG/TikTok bisa hilang kapan saja tanpa peringatan. Kalau akun hilang, audiens dan sumber pemasukan Anda ikut hilang.</p>
+                        </div>
+                        <div className="bg-slate-900 border border-border hover:border-sky-500/50 transition duration-300 hover:-translate-y-2 p-6 rounded-2xl card-hover relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-8 blur-3xl bg-sky-500/75 rounded-bl-full" />
+                            <div className="text-3xl mb-4">🏢</div>
+                            <h3 className="font-bold text-white mb-2">Terlihat Kurang Profesional</h3>
+                            <p className="text-sm text-slate-400">Klien B2B atau pembeli tiket besar biasanya minta "Boleh minta link websitenya?". Kalau jawabnya "Cek IG kita ya kak", tingkat trust langsung turun.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/* Problem */}
+            <section id="masalah" className="py-20">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h2 className="text-3xl md:text-4xl font-bold mb-12">Atau, website lama Anda cuma jadi beban biaya kan?</h2>
+                            <div className="space-y-6">
+                                <div className="flex items-start">
+                                    <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-slate-900 text-red-600 text-xl font-bold">✕</div>
+                                    <div className="ml-4">
+                                        <h3 className="text-lg font-bold">Sepi Pengunjung</h3>
+                                        <p className="text-muted-foreground">Desain bagus tapi loading lambat dan strukturnya berantakan. Google benci, customer kabur.</p>
                                     </div>
                                 </div>
-                                <div className=''>
-                                    <h6 className='mb-4 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Contoh Implementasi Nyata:</h6>
-                                    <ul className='flex flex-wrap items-center gap-2'>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Landing page jasa pembuatan rumah dengan tombol “Konsultasi via WhatsApp”</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Halaman promosi kursus Bahasa Inggris dengan form pendaftaran</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Landing page event lomba sekolah dengan sistem daftar online</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Halaman promo klinik gigi dengan diskon scaling</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Landing page jasa desain interior khusus apartemen</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Halaman promosi catering pernikahan</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Landing page jasa instalasi solar panel</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Halaman pendaftaran gym dengan paket membership</li>
-                                    </ul>
+                                <div className="flex items-start">
+                                    <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-slate-900 text-red-600 text-xl font-bold">✕</div>
+                                    <div className="ml-4">
+                                        <h3 className="text-lg font-bold">Copywriting Kaku</h3>
+                                        <p className="text-muted-foreground">"Kami adalah solusi terbaik bla bla..." Membosankan. Orang beli karena emosi, bukan data teknis.</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start">
+                                    <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-slate-900 text-red-600 text-xl font-bold">✕</div>
+                                    <div className="ml-4">
+                                        <h3 className="text-lg font-bold">Tombol 'Beli' Gak Dipencet</h3>
+                                        <p className="text-muted-foreground">Susunan layout bikin bingung. User mau beli tapi gak tau harus klik mana. Hilang deh omzet.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <div className='flex space-x-8 lg:ps-6'>
-                            <div className='hidden lg:block text-9xl font-bold pe-3'>
-                                <span>2</span>
-                            </div>
-                            <div className='w-full'>
-                                <h3 className='mb-4 pb-4 text-3xl border-b border-border font-semibold leading-snug tracking-tight text-pretty text-white sm:text-4xl'>Company Profile</h3>
-                                <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 border-b border-border lg:divide-x lg:divide-border pb-4 mb-8'>
-                                    <div className='lg:col-span-7'>
-                                        <p className="mb-6 text-lg/8">Menampilkan identitas dan membangun kepercayaan.</p>
-                                        <p className="text-neutral-300">Website ini berfungsi sebagai wajah resmi bisnis Anda di internet.</p>
-                                        <p className="mb-6 text-neutral-300">Bukan untuk promosi satu produk saja, tapi untuk menunjukkan siapa Anda dan apa yang Anda kerjakan.</p>
-                                    </div>
-                                    <div className='lg:col-span-5'>
-                                        <h6 className='mb-2 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Biasanya terdiri dari:</h6>
-                                        <ul className="mb-6 grid grid-cols-2 ps-8 list-disc text-neutral-300">
-                                            <li>Beranda</li>
-                                            <li>Tentang Kami</li>
-                                            <li>Layanan</li>
-                                            <li>Portofolio / Proyek</li>
-                                            <li>Blog (opsional)</li>
-                                            <li>Kontak</li>
-                                        </ul>
-                                    </div>
+                        <div className="relative bg-slate-900 rounded-2xl p-8 border border-slate-800">
+                            <div className="absolute -top-4 -right-4 bg-red-800 text-white px-4 py-2 rounded-lg font-bold shadow-lg transform rotate-2">Realita Pahit</div>
+                            <div className="space-y-4">
+                                <div className="bg-slate-800 p-4 rounded-lg shadow-sm opacity-50">
+                                    <div className="h-4 bg-slate-600 rounded w-3/4 mb-2" />
+                                    <div className="h-4 bg-slate-600 rounded w-1/2" />
                                 </div>
-                                <div className=''>
-                                    <h6 className='mb-4 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Contoh Implementasi Nyata:</h6>
-                                    <ul className='flex flex-wrap items-center gap-2'>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website perusahaan kontraktor dengan daftar proyek bangunan</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website konsultan pajak dengan profil tim dan layanan</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website klinik kesehatan dengan profil dokter</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website perusahaan distribusi barang</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website arsitek dengan galeri desain rumah</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website travel agent dengan daftar paket wisata</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website perusahaan outsourcing</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website sekolah atau lembaga kursus</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website notaris atau kantor hukum</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Website startup teknologi yang ingin tampil lebih kredibel</li>
-                                    </ul>
+                                <div className="bg-slate-800 p-4 rounded-lg shadow-sm border-2 border-red-900">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <span className="font-semibold text-red-500">Website Biasa</span>
+                                        <span className="text-xs text-muted-foreground">Bounce Rate: 80%</span>
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">Customer masuk -&gt; Bingung baca teks panjang -&gt; Keluar -&gt; Beli di kompetitor.</p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div className='flex space-x-8 lg:ps-6'>
-                            <div className='hidden lg:block text-9xl font-bold pe-3'>
-                                <span>3</span>
-                            </div>
-                            <div className='w-full'>
-                                <h3 className='mb-4 pb-4 text-3xl border-b border-border font-semibold leading-snug tracking-tight text-pretty text-white sm:text-4xl'>Website Katalog Produk (E-Commerce Sederhana)</h3>
-                                <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 border-b border-border lg:divide-x lg:divide-border pb-4 mb-8'>
-                                    <div className='lg:col-span-4'>
-                                        {/* <p className="mb-6 text-lg/8">Fokus pada satu tujuan utama.</p> */}
-                                        <p className="text-neutral-300">Ini bukan marketplace besar.</p>
-                                        <p className="text-neutral-300">Tidak ada sistem checkout kompleks.</p>
-                                        <p className="mb-6 text-neutral-300">Tidak ada payment gateway otomatis.</p>
-                                        <p className="mb-6 text-neutral-300">Website ini berfungsi sebagai etalase digital.</p>
-                                    </div>
-                                    <div className='lg:col-span-4'>
-                                        <h6 className='mb-2 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Pengunjung bisa:</h6>
-                                        <ul className="mb-6 ps-8 list-disc text-neutral-300">
-                                            <li>Melihat daftar produk</li>
-                                            <li>Melihat detail produk</li>
-                                            <li>Melihat foto dan deskripsi</li>
-                                            <li>Lalu klik tombol untuk menghubungi via WhatsApp</li>
-                                        </ul>
-                                        <p className="text-neutral-300 italic">Transaksi dilakukan langsung melalui chat.</p>
-                                    </div>
-                                    <div className='lg:col-span-4'>
-                                        <h6 className='mb-2 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Cocok untuk:</h6>
-                                        <ul className="mb-6 ps-8 list-disc text-neutral-300">
-                                            <li>UMKM</li>
-                                            <li>Toko lokal</li>
-                                            <li>Bisnis rumahan</li>
-                                            <li>Brand yang ingin terlihat lebih rapi dibanding jualan di Instagram saja</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className=''>
-                                    <h6 className='mb-4 text-md font-medium leading-snug tracking-tight text-pretty text-white'>Contoh Implementasi Nyata:</h6>
-                                    <ul className='flex flex-wrap items-center gap-2'>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko pakaian dengan katalog dan tombol “Pesan via WhatsApp”</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko skincare dengan daftar produk dan harga</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Penjual furniture custom dengan galeri produk</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko oleh-oleh khas daerah</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Supplier bahan bangunan</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko sembako lokal</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Penjual helm dan aksesoris motor</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko bunga dengan katalog rangkaian</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Jasa percetakan dengan daftar paket cetak</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Penjual hampers lebaran atau natal</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Brand sepatu lokal</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Jasa sablon kaos</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Penjual tanaman hias</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Toko alat pancing</li>
-                                        <li className='w-full lg:w-auto border border-border text-neutral-300 rounded px-3 py-1'>Penjual frozen food rumahan</li>
-                                    </ul>
+                                <div className="bg-slate-800 p-4 rounded-lg shadow-sm opacity-50">
+                                    <div className="h-4 bg-slate-600 rounded w-2/3 mb-2" />
+                                    <div className="h-4 bg-slate-600 rounded w-1/4" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* <div className="mx-auto mt-16 sm:mt-20 lg:mt-24 max-w-7xl px-6 xl:px-0">
-                    <dl className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {services.map((feature) => (
-                            <div key={feature.name} className="relative pl-20 bg-sky-800/20 p-6 rounded-2xl">
-                                <dt className="text-base/7 font-semibold text-white">
-                                    <div className="absolute top-6 left-6 flex size-10 items-center justify-center rounded-lg bg-sky-800 shadow-xl shadow-neutral-900">
-                                        <feature.icon aria-hidden="true" className="size-6 text-white" />
+            </section>
+
+            {/* Solusi */}
+            <section id="solusi" className="relative isolate overflow-hidden py-20 bg-slate-900/30 text-white">
+                <div className="absolute top-0 right-[calc(50%-50rem)] w-80 h-80 blur-3xl bg-sky-500/10 rounded-bl-full" />
+                <div className="absolute bottom-0 left-[calc(50%-50rem)] w-80 h-80 blur-3xl bg-sky-500/10 rounded-tr-full" />
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6">Apapun Bisnisnya, Goalnya Tetap Chat WA.</h2>
+                    <p className="text-xl text-slate-400 max-w-3xl mx-auto">Kami sesuaikan sistem website dengan model bisnis Anda. Fokusnya satu: Mempermudah klien untuk menghubungi Anda.</p>
+                </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="relative overflow-hidden bg-slate-900 p-8 rounded-2xl border border-slate-800">
+                        <div className="absolute -top-12 right-0 w-40 h-24 blur-3xl bg-sky-500/50 rounded-bl-full" />
+                        <div className="text-4xl mb-4">🎯</div>
+                        <h3 className="text-xl font-bold mb-3">Landing Page (Single Page)</h3>
+                        <p className="text-slate-400 mb-6">Satu halaman to-the-point. Sangat cocok untuk jualan produk fisik atau jasa spesifik lewat iklan FB/IG/TikTok.</p>
+                        <div className="pt-4 border-t border-slate-800 text-sm text-cyan-300 font-semibold"><span className='text-primary font-normal'>Goal :</span> 1 Tombol Direct WA</div>
+                    </div>
+                    <div className="relative overflow-hidden bg-slate-900 p-8 rounded-2xl border border-slate-800">
+                        <div className="absolute -top-12 right-0 w-40 h-24 blur-3xl bg-sky-500/50 rounded-bl-full" />
+                        <div className="text-4xl mb-4">🏢</div>
+                        <h3 className="text-xl font-bold mb-3">Company Profile</h3>
+                        <p className="text-slate-400 mb-6">Membangun kepercayaan klien korporat. Tampilkan portfolio, legalitas, dan tim agar Anda terlihat kredibel.</p>
+                        <div className="pt-4 border-t border-slate-800 text-sm text-cyan-300 font-semibold"><span className='text-primary font-normal'>Goal :</span> Form Penawaran ke WA</div>
+                    </div>
+                    <div className="relative overflow-hidden bg-slate-900 p-8 rounded-2xl border border-slate-800">
+                        <div className="absolute -top-12 right-0 w-40 h-24 blur-3xl bg-sky-500/50 rounded-bl-full" />
+                        <div className="text-4xl mb-4">🛍️</div>
+                        <h3 className="text-xl font-bold mb-3">Katalog Toko Online</h3>
+                        <p className="text-slate-400 mb-6">Tampilkan ribuan produk dengan rapi. Pengunjung pilih barang, klik checkout, lalu daftar orderan masuk ke WA Anda.</p>
+                        <div className="pt-4 border-t border-slate-800 text-sm text-cyan-300 font-semibold"><span className='text-primary font-normal'>Goal :</span> Order Otomatis via WA</div>
+                    </div>
+                </div>
+            </section>
+
+            {/* SECTION 3 & 9: Why Us & Guarantees */}
+            <section id="solusi" className="py-24 bg-slate-950 relative">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h2 className="text-3xl md:text-4xl font-bold leading-relaxed text-white mb-8">Kenapa Cylare Beda dari Tukang Web <span className="text-sky-300">500 Ribuan?</span></h2>
+                            <p className="text-slate-400 mb-12 leading-relaxed">Web murah biasanya cuma pakai template bajakan, loading lemot, dan desainnya kaku. Mereka jualan fitur. <strong className="text-white">Kami jualan strategi konversi.</strong></p>
+                            <div className="space-y-6">
+                                <div className="flex items-start gap-4">
+                                    <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-slate-900 text-emerald-400 text-xl font-bold">✓</div>
+                                    <div>
+                                        <h4 className="text-lg font-bold text-white mb-1">Fokus ke Closing (Sales)</h4>
+                                        <p className="text-slate-400">Desain cantik itu bonus. Tujuan utamanya adalah menyusun tombol, warna, dan teks (copywriting) agar otak pengunjung mau klik tombol WhatsApp.</p>
                                     </div>
-                                    {feature.name}
-                                </dt>
-                                <dd className="mt-2 text-base/7 text-neutral-400">{feature.description}</dd>
-                            </div>
-                        ))}
-                    </dl>
-                </div> */}
-                <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-40"
-                >
-                    <div
-                        style={{
-                            clipPath:
-                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                        }}
-                        className="relative left-[calc(50%+0rem)] aspect-1155/678 w-144.5 -translate-x-1/2 -rotate-180 bg-linear-to-tr from-sky-400 to-sky-900 opacity-30 sm:left-[calc(50%+50rem)] sm:w-288.75"
-                    />
-                </div>
-            </div>
-
-
-
-
-
-
-            <div className="relative isolate pb-20 pt-40">
-                <div className='absolute -z-10 inset-0 bg-linear-to-tl from-transparent blur-3xl to-sky-800/20 from-70% to-70%' />
-                <div className='absolute -z-10 inset-0 bg-linear-to-br from-transparent blur-3xl to-sky-800/20 from-70% to-70%' />
-
-                <div className='relative mx-auto max-w-7xl px-6 xl:px-0'>
-
-                    {/* <div className='absolute -left-8 top-20 w-0.5 h-64 bg-white rounded-full' />
-                    <div className='absolute left-0 top-[calc(40%-5.5rem)] w-0.5 h-24 -rotate-45 bg-white rounded-full' />
-                    <div className='absolute left-8.25 top-[calc(45%-3.7rem)] w-0.5 h-[calc(60%-5rem)] bg-white rounded-full' /> */}
-
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
-                        <div className='col-span-6'>
-                            <p className="text-4xl font-semibold leading-snug tracking-tight text-pretty text-white sm:text-5xl xl:text-6xl">
-                                Mengapa Memilih Layanan Ini?
-                            </p>
-                            <p className="mt-6 text-lg text-neutral-300 max-w-xl">
-                                Setiap bisnis memiliki kebutuhan yang berbeda.
-                                Karena itu, pendekatan yang digunakan juga harus menyesuaikan tujuan dan arah perkembangan usaha Anda.
-                            </p>
-                        </div>
-                        <div className='col-span-6 relative'>
-                            {/* <div className='bg-neutral-800'>
-                            <div className='px-2 py-0.5 text-xs'>Welcome</div>
-                            <div className='h-96 overflow-y-auto'>
-                                <SyntaxHighlighter language="typescript" style={atomOneDark}>
-                                    {code}
-                                </SyntaxHighlighter>
-                            </div>
-                        </div> */}
-                            {/* <div className='absolute inset-0 rounded-3xl bg-radial from-transparent to-black/25 to-70%'/> */}
-                            <Image className='w-full' width={900} height={600} quality={75} alt='illustration image 1' src={'/images/illustration-image-v3.webp'} loading='eager' />
-                        </div>
-                    </div>
-                    <div className="ps-20 mt-20 max-w-5xl">
-                        <dl className="grid grid-cols-1 gap-4 space-y-6">
-                            {superiorities.map((item) => (
-                                <div key={item.name} className="relative pl-14">
-                                    <dt className="font-semibold text-white">
-                                        <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-sky-800 shadow-xl shadow-neutral-900">
-                                            <item.icon aria-hidden="true" className="size-6 text-white" />
-                                        </div>
-                                        {item.name}
-                                    </dt>
-                                    <dd className="mt-2 text-neutral-400">{item.description}</dd>
                                 </div>
-                            ))}
-                        </dl>
-                    </div>
-                    <div
-                        aria-hidden="true"
-                        className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-40"
-                    >
-                        <div
-                            style={{
-                                clipPath:
-                                    'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                            }}
-                            className="relative left-[calc(50%+0rem)] aspect-1155/678 w-144.5 -translate-x-1/2 -rotate-180 bg-linear-to-tr from-sky-400 to-sky-900 opacity-30 sm:left-[calc(50%+50rem)] sm:w-288.75"
-                        />
+                                <div className="flex items-start gap-4">
+                                    <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-slate-900 text-emerald-400 text-xl font-bold">✓</div>
+                                    <div>
+                                        <h4 className="text-lg font-bold text-white mb-1">Garansi Bug &amp; Error 30 Hari</h4>
+                                        <p className="text-slate-400">Setelah website live, kami garansi selama 30 hari. Ada error? Kami perbaiki gratis. Kami tidak akan "habis dibayar lalu hilang".</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-slate-900 text-emerald-400 text-xl font-bold">✓</div>
+                                    <div>
+                                        <h4 className="text-lg font-bold text-white mb-1">Diskusi Langsung via WhatsApp</h4>
+                                        <p className="text-slate-400">Nggak perlu kirim tiket email yang dibalas 3 hari kemudian. Ada revisi? Langsung chat kami di WA, kita bahas santai.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="relative">
+                            {/* <div className="absolute inset-0 bg-linear-to-tr from-sky-500/20 to-indigo-500/20 blur-3xl rounded-full" /> */}
+                            <div className="bg-slate-900 border border-slate-800 p-8 rounded-3xl relative">
+                                <div className="text-center mb-6">
+                                    <span className="inline-block bg-emerald-500/10 text-emerald-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-emerald-500/20">Komitmen Kami</span>
+                                </div>
+                                <ul className="space-y-4">
+                                    <li className="flex items-center gap-3 bg-slate-800/50 p-4 rounded-lg">
+                                        <span className="text-2xl">✅</span>
+                                        <span className="text-white font-medium">Revisi Desain Sampai Cocok</span>
+                                    </li>
+                                    <li className="flex items-center gap-3 bg-slate-800/50 p-4 rounded-lg">
+                                        <span className="text-2xl">✅</span>
+                                        <span className="text-white font-medium">Bukan Template Asal Jadi</span>
+                                    </li>
+                                    <li className="flex items-center gap-3 bg-slate-800/50 p-4 rounded-lg">
+                                        <span className="text-2xl">✅</span>
+                                        <span className="text-white font-medium">Support Teknis Setelah Live</span>
+                                    </li>
+                                </ul>
+                                <p className="text-xs text-muted-foreground mt-4 text-center"><span className='text-red-500'>*</span> Sesuai batas wajar (max 5x mayor)</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div className='bg-sky-800/20 p-12 mt-20'>
-                    <div className='mx-auto max-w-7xl'>
-                        <p className='text-5xl text-pretty leading-snug tracking-tight'>
-                            Website yang dibangun dengan pendekatan yang tepat akan menjadi aset jangka panjang,
-                            bukan sekadar proyek sekali jadi.
+            </section>
+            {/* SECTION 5: Mid-page CTA */}
+            <section className="relative isolate overflow-hidden py-16 bg-slate-900/30">
+                <div className="absolute top-0 right-[calc(50%-50rem)] w-80 h-80 blur-3xl bg-sky-500/10 rounded-bl-full" />
+                <div className="absolute -top-1/2 right-[calc(50%-20rem)] w-64 h-64 blur-3xl bg-sky-500/10 rounded-b-full" />
+                <div className="absolute bottom-0 left-[calc(50%-50rem)] w-80 h-80 blur-3xl bg-sky-500/10 rounded-tr-full" />
+                <div className="absolute -bottom-1/2 left-[calc(50%-26rem)] w-72 h-72 blur-3xl bg-sky-500/10 rounded-t-full" />
+                <div className="max-w-4xl mx-auto px-4 text-center">
+                    <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white mb-6">Siap Punya Website yang<br />Bekerja Otomatis?</h2>
+                    <p className="text-sky-100 mb-8 opacity-90">Berhenti buang waktu melayani prospek yang tidak serius.<br />Biarkan website memfilter mereka untuk Anda.</p>
+                    <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20saya%20siap%20upgrade%20website%20bisnis%20saya" target="_blank" className="inline-block px-8 py-4 bg-sky-500 text-white font-bold rounded-xl hover:bg-sky-600 transition shadow-2xl transform hover:scale-105">
+                        Konsultasi Gratis Sekarang ➔
+                    </a>
+                </div>
+            </section>
+            {/* SECTION 6: Project Simulations */}
+            <section id="simulasi" className="py-24 bg-slate-950">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Simulasi Proyek <span className="text-sky-400">(Studi Kasus)</span></h2>
+                        <p className="text-slate-400 max-w-2xl mx-auto">Masih bingung website Anda nanti bentuknya seperti apa? Berikut bayangan bagaimana kami menyelesaikan masalah spesifik di industri yang berbeda.</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {/* Simulation 1 */}
+                        <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 relative group overflow-hidden">
+                            <div className="absolute -top-12 right-0 w-40 h-24 blur-3xl bg-sky-500/50 rounded-bl-full" />
+                            <div className="inline-block px-3 py-1 bg-sky-500/20 text-sky-400 rounded-lg text-xs font-bold mb-4">Bisnis F&amp;B / Coffee Shop</div>
+                            <h3 className="text-xl font-bold text-white mb-4">Sistem Pre-Order Otomatis</h3>
+                            <div className="mb-4">
+                                <p className="text-xs text-slate-500 uppercase font-bold mb-1">Masalah Klien:</p>
+                                <p className="text-sm text-slate-300">Pusing rekap orderan via DM IG. Sering salah catat pesanan karena format berantakan.</p>
+                            </div>
+                            <div>
+                                <p className="text-xs text-sky-400 uppercase font-bold mb-1">Solusi Cylare:</p>
+                                <p className="text-sm text-slate-300">Buat <span className="text-white font-medium">Landing Page Katalog</span>. Customer tinggal klik menu, isi data diri, lalu orderan terkirim ke WA admin dengan format yang rapi dan total harga otomatis.</p>
+                            </div>
+                        </div>
+                        {/* Simulation 2 */}
+                        <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 relative group overflow-hidden">
+                            <div className="absolute -top-12 right-0 w-40 h-24 blur-3xl bg-sky-500/50 rounded-bl-full" />
+                            <div className="inline-block px-3 py-1 bg-sky-500/20 text-sky-400 rounded-lg text-xs font-bold mb-4">Skincare / Fashion Lokal</div>
+                            <h3 className="text-xl font-bold text-white mb-4">Meningkatkan Trust Brand</h3>
+                            <div className="mb-4">
+                                <p className="text-xs text-slate-500 uppercase font-bold mb-1">Masalah Klien:</p>
+                                <p className="text-sm text-slate-300">Iklan di FB Ads jalan terus, klik banyak, tapi yang beli dikit karena brand belum terkenal (trust issue).</p>
+                            </div>
+                            <div>
+                                <p className="text-xs text-sky-400 uppercase font-bold mb-1">Solusi Cylare:</p>
+                                <p className="text-sm text-slate-300">Buat <span className="text-white font-medium">Sales Page Premium</span>. Fokus pada desain elegan, pamerkan sertifikat BPOM, dan susun blok testimoni "Before/After" yang meyakinkan secara psikologis.</p>
+                            </div>
+                        </div>
+                        {/* Simulation 3 */}
+                        <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 relative group overflow-hidden">
+                            <div className="absolute -top-12 right-0 w-40 h-24 blur-3xl bg-sky-500/50 rounded-bl-full" />
+                            <div className="inline-block px-3 py-1 bg-sky-500/20 text-sky-400 rounded-lg text-xs font-bold mb-4">Jasa / B2B Consultant</div>
+                            <h3 className="text-xl font-bold text-white mb-4">Profile Perusahaan Kredibel</h3>
+                            <div className="mb-4">
+                                <p className="text-xs text-slate-500 uppercase font-bold mb-1">Masalah Klien:</p>
+                                <p className="text-sm text-slate-300">Sering ditanya "Kliennya siapa aja?", repot kirim PDF portfolio bolak-balik via email ke calon korporat.</p>
+                            </div>
+                            <div>
+                                <p className="text-xs text-sky-400 uppercase font-bold mb-1">Solusi Cylare:</p>
+                                <p className="text-sm text-slate-300">Bangun <span className="text-white font-medium">Company Profile Berwibawa</span>. Tampilkan daftar klien besar, pamerkan metodologi kerja, dan sediakan form "Minta Penawaran" langsung di website.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/* SECTION 2: Work Process */}
+            <section id="proses" className="py-24 bg-slate-900/30">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Cara Kerja Kami <span className="text-sky-400">(Anti Ribet)</span></h2>
+                        <p className="text-slate-400 max-w-2xl mx-auto">Banyak klien kami gaptek, dan itu tidak masalah. Kami yang urus pusingnya, Anda tinggal pantau hasilnya.</p>
+                    </div>
+                    {/* CSS Timeline */}
+                    <div className="relative max-w-3xl mx-auto">
+                        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-800 hidden md:block" />
+                        <div className="space-y-12">
+                            <div className="relative flex items-start gap-6 md:gap-10">
+                                <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-700 text-sky-400 flex items-center justify-center font-bold text-2xl shrink-0 z-10 relative">1</div>
+                                <div className="pt-3">
+                                    <h3 className="text-xl font-bold text-white mb-2">Konsultasi Kebutuhan Bisnis</h3>
+                                    <p className="text-slate-400 text-sm">Kita ngobrol santai via WhatsApp. Anda ceritakan jualan apa, target marketnya siapa, dan masalahnya di mana. Kami akan sarankan paket yang pas.</p>
+                                </div>
+                            </div>
+                            <div className="relative flex items-start gap-6 md:gap-10">
+                                <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-700 text-sky-400 flex items-center justify-center font-bold text-2xl shrink-0 z-10 relative">2</div>
+                                <div className="pt-3">
+                                    <h3 className="text-xl font-bold text-white mb-2">Riset &amp; Konsep (Wireframe)</h3>
+                                    <p className="text-slate-400 text-sm">Setelah sepakat (dan pembayaran DP), kami tidak langsung ngoding. Kami riset kompetitor Anda, buat copywriting, dan susun sketsa mentah untuk Anda setujui.</p>
+                                </div>
+                            </div>
+                            <div className="relative flex items-start gap-6 md:gap-10">
+                                <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-700 text-sky-400 flex items-center justify-center font-bold text-2xl shrink-0 z-10 relative">3</div>
+                                <div className="pt-3">
+                                    <h3 className="text-xl font-bold text-white mb-2">Development &amp; Desain UI</h3>
+                                    <p className="text-slate-400 text-sm">Tim kami mulai meracik website Anda. Mulai dari warna, layout, animasi, sampai integrasi ke nomor WhatsApp Anda.</p>
+                                </div>
+                            </div>
+                            <div className="relative flex items-start gap-6 md:gap-10">
+                                <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-700 text-sky-400 flex items-center justify-center font-bold text-2xl shrink-0 z-10 relative">4</div>
+                                <div className="pt-3">
+                                    <h3 className="text-xl font-bold text-white mb-2">Revisi &amp; Finalisasi</h3>
+                                    <p className="text-slate-400 text-sm">Kami berikan link preview rahasia. Anda cek. Jika ada bagian yang kurang sreg, sampaikan saja. Kita revisi sampai Anda puas.</p>
+                                </div>
+                            </div>
+                            <div className="relative flex items-start gap-6 md:gap-10">
+                                <div className="w-16 h-16 rounded-2xl bg-sky-500 text-white flex items-center justify-center font-bold text-2xl shrink-0 z-10 shadow-lg shadow-sky-500/30">🚀</div>
+                                <div className="pt-3">
+                                    <h3 className="text-xl font-bold text-white mb-2">Launching &amp; Support Live</h3>
+                                    <p className="text-slate-400 text-sm">Website di-online-kan menggunakan domain milik Anda (.com / .id). Kami beri tutorial cara pakainya, dan mulai masa garansi 30 hari.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/* SECTION 8: Pricing & Maintenance */}
+            <section id="harga" className="py-24 bg-slate-950">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Investasi Bisnis Anda</h2>
+                        <p className="text-slate-400">Harga di bawah ini adalah harga 1x bayar pembuatan. <br />Bisa <span className="text-white font-bold">Bayar DP 50%</span> dulu untuk mulai pengerjaan.</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {/* Plan 1 */}
+                        <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl flex flex-col hover:border-sky-500/30 transition">
+                            <h3 className="text-xl font-bold text-white mb-2">Starter (Landing Page)</h3>
+                            <p className="text-sm text-slate-500 mb-6">Validasi produk jualan atau jasa spesifik via ads.</p>
+                            <div className="text-3xl font-extrabold text-white mb-8">Rp 1.500.000</div>
+                            <ul className="space-y-4 mb-10 text-sm text-slate-400 grow">
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> 1 Halaman Fokus Jualan</li>
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Copywriting</li>
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Tombol Direct WhatsApp</li>
+                                <li className="flex items-center gap-2 font-bold text-sky-300"><span className="text-sky-400">✓</span> Maksimal 3x Revisi Mayor</li>
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Gratis Hosting &amp; Domain .com 1 thn</li>
+                            </ul>
+                            <a href="https://wa.me/628123456789?text=Saya%20tertarik%20Paket%20Starter" className="w-full py-4 text-center bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-700 transition">Pilih Paket</a>
+                        </div>
+                        {/* Plan 2: Best Value */}
+                        <div className="bg-slate-900 border-2 border-sky-500 p-8 rounded-3xl flex flex-col relative transform lg:-translate-y-6 shadow-2xl shadow-sky-500/10">
+                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-sky-500 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Paling Sering Dipilih</div>
+                            <h3 className="text-xl font-bold text-white mb-2">Business Growth</h3>
+                            <p className="text-sm text-slate-400 mb-6">Untuk UMKM yang butuh Company Profile / Web Utuh.</p>
+                            <div className="text-4xl font-extrabold text-sky-400 mb-8">Rp 3.500.000</div>
+                            <ul className="space-y-4 mb-10 text-sm text-slate-300 grow">
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Multi bahasa (en, id)</li>
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Sampai 5 Halaman Strategis</li>
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Desain Custom (Bukan Template)</li>
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Integrasi Form Order WA</li>
+                                <li className="flex items-center gap-2 font-bold text-sky-300"><span className="text-sky-400">✓</span> Maksimal 5x Revisi Mayor</li>
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Basic SEO Setup (Google)</li>
+                            </ul>
+                            <a href="https://wa.me/628123456789?text=Saya%20tertarik%20Paket%20Business%20Growth" className="w-full py-4 text-center bg-sky-500 text-white rounded-xl font-bold hover:bg-sky-600 transition shadow-lg shadow-sky-500/20">Ambil Slot Konsultasi</a>
+                        </div>
+                        {/* Plan 3 */}
+                        <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl flex flex-col hover:border-sky-500/30 transition">
+                            <h3 className="text-xl font-bold text-white mb-2">Katalog Online</h3>
+                            <p className="text-sm text-slate-500 mb-6">Punya puluhan/ratusan produk yang butuh katalog.</p>
+                            <div className="text-3xl font-extrabold text-white mb-8">Rp 5.500.000</div>
+                            <ul className="space-y-4 mb-10 text-sm text-slate-400 grow">
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Sistem Keranjang Belanja</li>
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Order List Langsung ke WA Admin</li>
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Halaman Admin Manajemen Produk</li>
+                                <li className="flex items-center gap-2 font-bold text-sky-300"><span className="text-sky-400">✓</span> Revisi s/d Puas (Batas Wajar)</li>
+                                <li className="flex items-center gap-2"><span className="text-sky-400">✓</span> Video Tutorial Edit Mandiri</li>
+                            </ul>
+                            <a href="https://wa.me/628123456789?text=Saya%20tertarik%20Paket%20Katalog" className="w-full py-4 text-center bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-700 transition">Diskusi Dulu</a>
+                        </div>
+                    </div>
+                    {/* Maintenance & After Sales Detail */}
+                    <div className="mt-16 bg-linear-to-br from-slate-900 to-slate-800 p-8 rounded-3xl border border-slate-700/50 shadow-xl max-w-4xl mx-auto">
+                        <div className="flex flex-col md:flex-row gap-8 items-center">
+                            <div className="w-full md:w-1/3 text-center md:text-left">
+                                <span className="text-5xl">🤝</span>
+                                <h4 className="text-white font-bold mt-4 text-xl">Layanan After-Sales</h4>
+                                <p className="text-sm text-slate-400 mt-2">Kami tidak akan meninggalkan Anda setelah website live.</p>
+                            </div>
+                            <div className="w-full md:w-2/3 space-y-4 text-sm">
+                                <div className="p-4 bg-slate-950/50 rounded-xl border border-slate-800 flex items-start gap-3">
+                                    <span className="text-emerald-400 mt-0.5">✓</span>
+                                    <div>
+                                        <strong className="text-white block mb-1">Gratis Maintenance 1 Bulan Pertama</strong>
+                                        <p className="text-slate-400">Cek error, backup minor, dan perbaikan bug kami cover 100% gratis setelah website rilis.</p>
+                                    </div>
+                                </div>
+                                <div className="p-4 bg-slate-950/50 rounded-xl border border-slate-800 flex items-start gap-3">
+                                    <span className="text-sky-400 mt-0.5">🔄</span>
+                                    <div>
+                                        <strong className="text-white block mb-1">Opsi Maintenance Berbayar (Bulan ke-2 dst)</strong>
+                                        <p className="text-slate-400">Cuma Rp 250rb - 500rb/bulan (opsional). Kami bantu update keamanan, monitor uptime, perpanjangan domain, dan ganti foto/teks agar Anda fokus jualan saja.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/* SECTION 7: About / Personal Branding */}
+            <section className="py-24 bg-slate-900/30 border-t border-slate-800/50">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 className="text-3xl font-bold text-white mb-8">Siapa di Balik Cylare?</h2>
+                    <div className="card-bg p-8 md:p-12 rounded-[40px] border border-slate-800">
+                        <div className="w-24 h-24 bg-linear-to-br from-slate-700 to-slate-900 border-2 border-sky-500 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl overflow-hidden">
+                            🧑‍💻
+                        </div>
+                        <h3 className="text-2xl font-bold text-white mb-4">Halo, Saya Founder Cylare.</h3>
+                        <p className="text-slate-400 text-lg leading-relaxed mb-6">
+                            Saya melihat banyak teman-teman UMKM dan pengusaha lokal yang tertipu oleh jasa pembuatan website abal-abal. Bayar mahal, tapi yang didapat web template lemot yang sama sekali gak mendatangkan pembeli.
                         </p>
+                        <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                            Itu sebabnya saya membangun Cylare. Menggunakan *modern tech stack* yang stabil dan fokus 100% pada struktur psikologi penjualan. Misi saya simpel: <strong>Membantu bisnis Anda memiliki mesin kasir digital yang bisa diandalkan.</strong>
+                        </p>
+                        <div className="inline-flex gap-2">
+                            <span className="px-3 py-1 bg-slate-800 text-slate-300 rounded text-xs font-mono">Modern Tech</span>
+                            <span className="px-3 py-1 bg-slate-800 text-slate-300 rounded text-xs font-mono">Sales Focused</span>
+                            <span className="px-3 py-1 bg-slate-800 text-slate-300 rounded text-xs font-mono">UMKM Friendly</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-
-
-
-
-
-            <div className='mx-auto max-w-7xl text-center p-8 border border-border rounded-3xl mt-20'>Portfolio / Case Study</div>
-            <div className='mx-auto max-w-7xl text-center p-8 border border-border rounded-3xl mt-20'>Social Proof</div>
-            <div className='mx-auto max-w-7xl text-center p-8 border border-border rounded-3xl mt-20'>Blog Preview (3 Artikel Terbaru)</div>
-            <div className='mx-auto max-w-7xl text-center p-8 border border-border rounded-3xl mt-20'>Final CTA</div>
-
-
-
-
-
-
-            
-
+            </section>
+            {/* SECTION 4: Expanded FAQ */}
+            <section className="py-24 bg-slate-950">
+                <div className="max-w-3xl mx-auto px-4">
+                    <h2 className="text-3xl font-bold text-center text-white mb-12">Yang Sering Ditanyakan (FAQ)</h2>
+                    <div className="space-y-4">
+                        {/* FAQ 1 */}
+                        <Accordion
+                            type="multiple"
+                            className="rounded-2xl border border-slate-800"
+                        >
+                            <AccordionItem
+                                value="item-1"
+                                className="border-b px-4 last:border-b-0 py-2"
+                            >
+                                <AccordionTrigger className='font-semibold text-md'>Berapa lama proses pengerjaannya?</AccordionTrigger>
+                                <AccordionContent className='text-muted-foreground'>Sangat bergantung pada paket dan kesiapan data (logo, teks, foto produk). Rata-rata: Landing Page (3-5 hari kerja), Company Profile (7-10 hari kerja), Katalog (14 hari kerja). Kami pastikan tidak molor asalkan komunikasi lancar.</AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem
+                                value="item-2"
+                                className="border-b px-4 last:border-b-0 py-2"
+                            >
+                                <AccordionTrigger className='font-semibold text-md'>Apakah pembayarannya bisa dicicil / bayar DP dulu?</AccordionTrigger>
+                                <AccordionContent className='text-muted-foreground'>Sangat bisa! Anda cukup membayar <strong className='text-primary'>DP 50%</strong> untuk memulai pengerjaan desain dan development. Sisanya 50% dilunasi saat website sudah selesai, direvisi, dan siap untuk dipublikasikan (live).</AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem
+                                value="item-3"
+                                className="border-b px-4 last:border-b-0 py-2"
+                            >
+                                <AccordionTrigger className='font-semibold text-md'>Saya gaptek, urusan hosting dan domain bagaimana?</AccordionTrigger>
+                                <AccordionContent className='text-muted-foreground'>Anda terima beres. Harga paket kami sudah termasuk pembelian Domain (nama web Anda, misal: bisnisanda.com) dan Hosting (tempat simpan data web) untuk tahun pertama. Kami yang set-up semuanya dari A sampai Z.</AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem
+                                value="item-4"
+                                className="border-b px-4 last:border-b-0 py-2"
+                            >
+                                <AccordionTrigger className='font-semibold text-md'>Gimana kalau saya tidak suka dengan desain awalnya?</AccordionTrigger>
+                                <AccordionContent className='text-muted-foreground'>Makanya di tahap ke-2, kita akan sepakati "Sketsa Kasar / Konsep" dulu sebelum kami ngoding. Jika desain awalnya kurang sreg, gunakan jatah revisi Anda. Kami sangat fleksibel dan terbuka pada masukan Anda.</AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem
+                                value="item-5"
+                                className="border-b px-4 last:border-b-0 py-2"
+                            >
+                                <AccordionTrigger className='font-semibold text-md'>Apa butuh perpanjangan tahun depan? Biayanya berapa?</AccordionTrigger>
+                                <AccordionContent className='text-muted-foreground'>Ya, sama seperti sewa ruko, domain dan hosting wajib diperpanjang per tahun (mulai tahun kedua). Biayanya sangat terjangkau, kisaran Rp 350.000 - Rp 600.000 per TAHUN tergantung kapasitas. Kami akan ingatkan H-30 sebelum jatuh tempo.</AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem
+                                value="item-6"
+                                className="border-b px-4 last:border-b-0 py-2"
+                            >
+                                <AccordionTrigger className='font-semibold text-md'>Kenapa revisinya dibatasi?</AccordionTrigger>
+                                <AccordionContent className='text-muted-foreground'>Untuk menjaga proyek tetap on-schedule dan sehat. Tapi tenang, "Revisi Mayor" itu artinya ubah layout besar. Kalau cuma ganti kata-kata atau ganti satu-dua foto, itu gratis selamanya selama masa maintenance. Kami fleksibel, bukan robot.</AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem
+                                value="item-7"
+                                className="border-b px-4 last:border-b-0 py-2"
+                            >
+                                <AccordionTrigger className='font-semibold text-md'>Gimana kalau saya nggak perpanjang maintenance?</AccordionTrigger>
+                                <AccordionContent className='text-muted-foreground'>Tidak apa-apa. Website tetap milik Anda 100%. Anda bisa mengelolanya sendiri. Maintenance berbayar hanya jika Anda ingin "terima beres" dan nggak mau pusing urusan teknis seperti update plugin, backup data, atau serangan malware.</AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                    </div>
+                </div>
+            </section>
+            {/* Final CTA */}
+            <section className="py-24 relative overflow-hidden bg-slate-900">
+                <div className="absolute inset-0 bg-sky-900/10 blur-3xl" />
+                <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">Masih Ragu? <span className="text-sky-400">Kita Ngobrol Dulu Aja.</span></h2>
+                    <p className="text-xl text-slate-400 mb-12">Ceritakan masalah bisnis Anda di WhatsApp. Kami kasih saran strategi websitenya secara jujur. Kalau dirasa nggak cocok, nggak jadi beli juga nggak apa-apa.</p>
+                    <div className="bg-slate-950 border border-sky-500 p-10 rounded-[40px] shadow-2xl relative">
+                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-sky-500 px-4 py-1 rounded-full text-white font-bold text-xs uppercase shadow-lg shadow-sky-500/30">Admin Standby</div>
+                        <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20boleh%20tanya-tanya%20dulu%20soal%20bikin%20website?" target="_blank" className="inline-flex items-center gap-4 bg-sky-500 text-white px-10 py-5 rounded-2xl font-black text-2xl hover:bg-sky-600 transition shadow-2xl shadow-sky-500/40 transform hover:scale-105">
+                            Hubungi WhatsApp ➔
+                        </a>
+                        <p className="mt-6 text-slate-500 text-sm">"Jangan tunggu kompetitor Anda yang duluan ambil pasar di Google."</p>
+                    </div>
+                </div>
+            </section>
+            {/* Footer */}
+            <footer className="py-12 border-t border-slate-900 bg-slate-950">
+                <div className="max-w-7xl mx-auto px-4 text-center">
+                    <div className="font-bold text-2xl text-white mb-4">Cylare</div>
+                    <p className="text-slate-500 text-sm max-w-sm mx-auto mb-8">Partner strategi digital untuk bisnis yang serius ingin tumbuh. Bukan sekadar bikin web, tapi bangun aset jualan 24 jam.</p>
+                    <div className="flex justify-center gap-6 text-slate-400 text-xs mb-8">
+                        <a href="#" className="hover:text-sky-400 transition">Instagram</a>
+                        <a href="#" className="hover:text-sky-400 transition">TikTok</a>
+                        <a href="#" className="hover:text-sky-400 transition">Portfolio Lengkap</a>
+                    </div>
+                    <p className="text-slate-700 text-[10px] uppercase tracking-widest font-bold">© 2024 Cylare Digital Agency. No Jargon. No Bullshit. Just Conversions.</p>
+                </div>
+            </footer>
         </div>
+
+
     )
 }
 

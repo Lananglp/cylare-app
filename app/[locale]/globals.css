@@ -119,6 +119,11 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #0069a8; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
   }
   body {
     @apply bg-background text-foreground;
