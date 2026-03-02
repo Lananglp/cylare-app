@@ -1,6 +1,8 @@
 "use client"
 import { AppHeader } from '@/components/app/header';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { DPPercentage, percentageAfterDP, textToWhatsapp } from '@/config/config';
+import { Link } from '@/i18n/navigation';
 import { CheckIcon, CircleCheckBigIcon } from 'lucide-react';
 
 const BackgroundGrid = () => {
@@ -31,6 +33,8 @@ const BackgroundGrid = () => {
 
 function HomePage() {
 
+    const appName = process.env.NEXT_PUBLIC_APP_NAME;
+
     // ===========================================================================
 
     return (
@@ -55,12 +59,12 @@ function HomePage() {
                         Sudah bukan zamannya website cuma jadi brosur online yang sepi. Kami rancang alur website yang &quot;memaksa&quot; pengunjung penasaran dan berujung chat ke WhatsApp Anda.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20saya%20mau%20konsultasi%20strategi%20website%20gratis" target="_blank" className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-xl shadow-blue-500/20">
+                        <Link href={textToWhatsapp} target="_blank" className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-xl shadow-blue-500/20">
                             Konsultasi Gratis Sekarang ➔
-                        </a>
-                        <a href="#simulasi" className="px-8 py-4 bg-input/50 text-primary font-bold border border-border rounded-xl hover:bg-slate-200 dark:hover:bg-input transition">
+                        </Link>
+                        <Link href="#simulasi" className="px-8 py-4 bg-input/50 text-primary font-bold border border-border rounded-xl hover:bg-slate-200 dark:hover:bg-input transition">
                             Lihat Simulasi Proyek
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className="mt-16 border-y border-border/50 py-6 bg-secondary/30 space-x-0 md:space-x-12 flex flex-col md:flex-row justify-center items-center gap-8 text-muted-foreground grayscale opacity-70">
@@ -82,26 +86,26 @@ function HomePage() {
                         <div className="bg-card border border-border hover:border-blue-500/50 transition duration-300 hover:-translate-y-2 p-6 rounded-2xl card-hover relative overflow-hidden">
                             <div className="absolute hidden dark:block top-0 right-0 w-32 h-8 blur-3xl bg-blue-500/75 rounded-bl-full" />
                             <div className="text-3xl mb-4">💬</div>
-                            <h3 className="font-bold text-primary mb-2">DM Numpuk, Closing Lama</h3>
-                            <p className="text-sm text-muted-foreground">Jawab pertanyaan yang itu-itu saja tiap hari di IG/WA bikin admin capek. Pembeli keburu lari ke kompetitor yang pelayanannya instan.</p>
+                            <h3 className="sm:text-md font-bold text-primary mb-2">DM Numpuk, Closing Lama</h3>
+                            <p className="text-muted-foreground">Jawab pertanyaan yang itu-itu saja tiap hari di IG/WA bikin admin capek. Pembeli keburu lari ke kompetitor yang pelayanannya instan.</p>
                         </div>
                         <div className="bg-card border border-border hover:border-blue-500/50 transition duration-300 hover:-translate-y-2 p-6 rounded-2xl card-hover relative overflow-hidden">
                             <div className="absolute hidden dark:block top-0 right-0 w-32 h-8 blur-3xl bg-blue-500/75 rounded-bl-full" />
                             <div className="text-3xl mb-4">🔍</div>
-                            <h3 className="font-bold text-primary mb-2">Gak Muncul di Google</h3>
-                            <p className="text-sm text-muted-foreground">Saat orang ketik &quot;Jasa [Bisnis Anda] terdekat&quot;, yang muncul kompetitor Anda. Anda kehilangan pembeli yang sudah siap bayar.</p>
+                            <h3 className="sm:text-md font-bold text-primary mb-2">Gak Muncul di Google</h3>
+                            <p className="text-muted-foreground">Saat orang ketik &quot;Jasa [Bisnis Anda] terdekat&quot;, yang muncul kompetitor Anda. Anda kehilangan pembeli yang sudah siap bayar.</p>
                         </div>
                         <div className="bg-card border border-border hover:border-blue-500/50 transition duration-300 hover:-translate-y-2 p-6 rounded-2xl card-hover relative overflow-hidden">
                             <div className="absolute hidden dark:block top-0 right-0 w-32 h-8 blur-3xl bg-blue-500/75 rounded-bl-full" />
                             <div className="text-3xl mb-4">⚠️</div>
-                            <h3 className="font-bold text-primary mb-2">Rawan Banned &amp; Algoritma</h3>
-                            <p className="text-sm text-muted-foreground">Akun IG/TikTok bisa hilang kapan saja tanpa peringatan. Kalau akun hilang, audiens dan sumber pemasukan Anda ikut hilang.</p>
+                            <h3 className="sm:text-md font-bold text-primary mb-2">Rawan Banned &amp; Algoritma</h3>
+                            <p className="text-muted-foreground">Akun IG/TikTok bisa hilang kapan saja tanpa peringatan. Kalau akun hilang, audiens dan sumber pemasukan Anda ikut hilang.</p>
                         </div>
                         <div className="bg-card border border-border hover:border-blue-500/50 transition duration-300 hover:-translate-y-2 p-6 rounded-2xl card-hover relative overflow-hidden">
                             <div className="absolute hidden dark:block top-0 right-0 w-32 h-8 blur-3xl bg-blue-500/75 rounded-bl-full" />
                             <div className="text-3xl mb-4">🏢</div>
-                            <h3 className="font-bold text-primary mb-2">Terlihat Kurang Profesional</h3>
-                            <p className="text-sm text-muted-foreground">Klien B2B atau pembeli tiket besar biasanya minta &quot;Boleh minta link websitenya?&quot;. Kalau jawabnya &quot;Cek IG kita ya kak&quot;, tingkat trust langsung turun.</p>
+                            <h3 className="sm:text-md font-bold text-primary mb-2">Terlihat Kurang Profesional</h3>
+                            <p className="text-muted-foreground">Klien B2B atau pembeli tiket besar biasanya minta &quot;Boleh minta link websitenya?&quot;. Kalau jawabnya &quot;Cek IG kita ya kak&quot;, tingkat trust langsung turun.</p>
                         </div>
                     </div>
                 </div>
@@ -116,27 +120,27 @@ function HomePage() {
                                 <div className="flex items-start">
                                     <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-secondary text-red-600 text-xl font-bold">✕</div>
                                     <div className="ml-4">
-                                        <h3 className="text-lg font-bold">Sepi Pengunjung</h3>
+                                        <h3 className="sm:text-lg font-bold">Sepi Pengunjung</h3>
                                         <p className="text-muted-foreground">Desain bagus tapi loading lambat dan strukturnya berantakan. Google benci, customer kabur.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start">
                                     <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-secondary text-red-600 text-xl font-bold">✕</div>
                                     <div className="ml-4">
-                                        <h3 className="text-lg font-bold">Copywriting Kaku</h3>
+                                        <h3 className="sm:text-lg font-bold">Copywriting Kaku</h3>
                                         <p className="text-muted-foreground">&quot;Kami adalah solusi terbaik bla bla...&quot; Membosankan. Orang beli karena emosi, bukan data teknis.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start">
                                     <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-secondary text-red-600 text-xl font-bold">✕</div>
                                     <div className="ml-4">
-                                        <h3 className="text-lg font-bold">Tombol &quot;Beli&quot; Gak Dipencet</h3>
+                                        <h3 className="sm:text-lg font-bold">Tombol &quot;Beli&quot; Gak Dipencet</h3>
                                         <p className="text-muted-foreground">Susunan layout bikin bingung. User mau beli tapi gak tau harus klik mana. Hilang deh omzet.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="relative bg-secondary dark:bg-secondary/50 rounded-2xl p-8 border border-border">
+                        <div className="relative bg-secondary dark:bg-secondary/50 rounded-2xl p-4 sm:p-8 border border-border">
                             <div className="absolute -top-4 -right-2 lg:-right-4 bg-red-600 text-white px-4 py-2 text-sm rounded-lg font-bold shadow-lg transform rotate-2">Realita Pahit</div>
                             <div className="space-y-4">
                                 <div className="bg-slate-300 dark:bg-slate-800 p-4 rounded-lg shadow-sm opacity-50">
@@ -198,7 +202,7 @@ function HomePage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-bold leading-relaxed text-primary mb-8">Kenapa Cylare Beda dari Tukang Web <span className="text-blue-600 dark:text-blue-500">500 Ribuan?</span></h2>
+                            <h2 className="text-3xl md:text-4xl font-bold leading-relaxed text-primary mb-8">Kenapa {appName} Beda dari Tukang Web <span className="text-blue-600 dark:text-blue-500">500 Ribuan?</span></h2>
                             <p className="text-muted-foreground mb-12 leading-relaxed">Web murah biasanya cuma pakai template bajakan, loading lemot, dan desainnya kaku. Mereka jualan fitur. <strong className="text-primary">Kami jualan strategi konversi.</strong></p>
                             <div className="space-y-6">
                                 <div className="flex items-start gap-4">
@@ -259,9 +263,9 @@ function HomePage() {
                 <div className="max-w-4xl mx-auto px-4 text-center">
                     <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight text-primary mb-6">Siap Punya Website yang<br />Bekerja Otomatis?</h2>
                     <p className="text-muted-foreground mb-8 opacity-90">Berhenti buang waktu melayani <br className='sm:hidden' /> prospek yang tidak serius.<br />Biarkan website memfilter <br className='sm:hidden' /> mereka untuk Anda.</p>
-                    <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20saya%20siap%20upgrade%20website%20bisnis%20saya" target="_blank" className="inline-block px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-2xl transform hover:scale-105">
+                    <Link href={textToWhatsapp} target="_blank" className="inline-block px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-2xl transform hover:scale-105">
                         Konsultasi Gratis Sekarang ➔
-                    </a>
+                    </Link>
                 </div>
             </section>
             {/* SECTION 6: Project Simulations */}
@@ -375,7 +379,7 @@ function HomePage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">Investasi Bisnis Anda</h2>
-                        <p className="text-muted-foreground">Harga di bawah ini adalah harga <br className='sm:hidden' /> sekali bayar pembuatan. <br />Bisa <span className="text-primary font-bold">Bayar DP 40%</span> dulu <br className='sm:hidden' /> untuk mulai pengerjaan.</p>
+                        <p className="text-muted-foreground">Harga di bawah ini adalah harga <br className='sm:hidden' /> sekali bayar pembuatan. <br />Bisa <span className="text-primary font-bold">Bayar DP {DPPercentage}</span> dulu <br className='sm:hidden' /> untuk mulai pengerjaan.</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {/* Plan 1 */}
@@ -396,12 +400,12 @@ function HomePage() {
                                 <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Tautan IG, FB, TikTok, Dll</li>
                                 <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Gratis Domain .com 1 tahun</li>
                             </ul>
-                            <a href="https://wa.me/628123456789?text=Saya%20tertarik%20Paket%20Starter" className="w-full py-4 text-center bg-input/50 text-primary font-bold border border-border rounded-xl hover:bg-slate-200 dark:hover:bg-input transition">Konsultasi Sekarang</a>
+                            <Link href={textToWhatsapp+"%20dengan%20pilihan%20paket%20Basic%20(Landing%20Page)"} target="_blank" className="w-full py-4 text-center bg-input/50 text-primary font-bold border border-border rounded-xl hover:bg-slate-200 dark:hover:bg-input transition">Konsultasi Sekarang</Link>
                         </div>
                         {/* Plan 2: Best Value */}
                         <div className="bg-card dark:bg-secondary/30 border-2 border-blue-500 p-8 rounded-3xl flex flex-col relative transform lg:-translate-y-6 shadow-2xl shadow-blue-500/10">
                             <div className="absolute hidden dark:block top-0 right-0 w-32 h-80 blur-3xl bg-blue-500/10 rounded-bl-full" />
-                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-primary px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Paling Sering Dipilih</div>
+                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 dark:bg-blue-500 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Paling Sering Dipilih</div>
                             <h3 className="text-xl font-bold text-primary mb-2">Plus <span className='text-base font-semibold text-blue-600 dark:text-blue-300 align-middle ms-1'>Company Profile</span></h3>
                             <p className="text-sm text-muted-foreground mb-6">Tampil lebih profesional dan meyakinkan. Cocok untuk profil perusahaan, web instansi, atau portofolio bisnis jasa.</p>
                             {/* <div className="text-md font-medium text-primary">Mulai dari:</div> */}
@@ -416,7 +420,7 @@ function HomePage() {
                                 <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Basic SEO Setup (Google)</li>
                                 <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Lokasi Peta (Google Maps)</li>
                             </ul>
-                            <a href="https://wa.me/628123456789?text=Saya%20tertarik%20Paket%20Business%20Growth" className="w-full py-4 text-center bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">Konsultasi Sekarang</a>
+                            <Link href={textToWhatsapp+"%20dengan%20pilihan%20paket%20Plus%20(Company%20Profile)"} target="_blank" className="w-full py-4 text-center bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">Konsultasi Sekarang</Link>
                         </div>
                         {/* Plan 3 */}
                         <div className="relative isolate overflow-hidden bg-card dark:bg-secondary/30 border p-8 rounded-3xl flex flex-col hover:border-blue-500/30 transition">
@@ -436,7 +440,7 @@ function HomePage() {
                                 <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Advanced SEO Setup (Google)</li>
                                 <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Tutorial Penggunaan Admin Panel</li>
                             </ul>
-                            <a href="https://wa.me/628123456789?text=Saya%20tertarik%20Paket%20Katalog" className="w-full py-4 text-center bg-input/50 text-primary font-bold border border-border rounded-xl hover:bg-slate-200 dark:hover:bg-input transition">Konsultasi Sekarang</a>
+                            <Link href={textToWhatsapp+"%20dengan%20pilihan%20paket%20Pro%20(E%20Commerce)"} target="_blank" className="w-full py-4 text-center bg-input/50 text-primary font-bold border border-border rounded-xl hover:bg-slate-200 dark:hover:bg-input transition">Konsultasi Sekarang</Link>
                         </div>
                     </div>
                     <div className="mt-12 max-w-2xl mx-auto bg-card dark:bg-secondary/30 p-8 rounded-3xl border">
@@ -496,7 +500,7 @@ function HomePage() {
             {/* SECTION 7: About / Personal Branding */}
             <section className="py-24">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold text-primary mb-8">Siapa di Balik Cylare?</h2>
+                    <h2 className="text-3xl font-bold text-primary mb-8">Siapa di Balik {appName}?</h2>
                     <div className="relative isolate overflow-hidden p-8 md:p-12 rounded-[40px] bg-secondary/30 border border-border/50">
                         <div className="absolute hidden dark:block top-0 right-0 w-64 h-64 blur-3xl bg-blue-500/10 rounded-bl-full" />
                         <div className="absolute hidden dark:block top-0 left-0 w-40 h-40 blur-3xl bg-blue-500/10 rounded-b-full" />
@@ -504,12 +508,12 @@ function HomePage() {
                         <div className="w-24 h-24 bg-linear-to-br from-slate-700 to-secondary border-2 border-blue-500 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl overflow-hidden">
                             🧑‍💻
                         </div>
-                        <h3 className="text-xl font-bold text-primary mb-4">Halo, Saya Founder Cylare.</h3>
+                        <h3 className="text-xl font-bold text-primary mb-4">Halo, Saya Founder {appName}.</h3>
                         <p className="text-muted-foreground leading-relaxed mb-6">
                             Saya melihat banyak teman-teman UMKM dan pengusaha lokal yang tertipu oleh jasa pembuatan website abal-abal. Bayar mahal, tapi yang didapat web template lemot yang sama sekali gak mendatangkan pembeli.
                         </p>
                         <p className="text-muted-foreground leading-relaxed mb-8">
-                            Itu sebabnya saya membangun Cylare. Menggunakan *modern tech stack* yang stabil dan fokus 100% pada struktur psikologi penjualan. Misi saya simpel: <strong>Membantu bisnis Anda memiliki mesin kasir digital yang bisa diandalkan.</strong>
+                            Itu sebabnya saya membangun {appName}. Menggunakan *modern tech stack* yang stabil dan fokus 100% pada struktur psikologi penjualan. Misi saya simpel: <strong>Membantu bisnis Anda memiliki mesin kasir digital yang bisa diandalkan.</strong>
                         </p>
                         <div className="inline-flex gap-2">
                             <span className="px-3 py-1 bg-secondary text-muted-foreground rounded text-xs font-mono">Modern Tech</span>
@@ -534,14 +538,14 @@ function HomePage() {
                                 className="border-b px-4 last:border-b-0 py-2"
                             >
                                 <AccordionTrigger className='font-semibold text-md'>Berapa lama proses pengerjaannya?</AccordionTrigger>
-                                <AccordionContent className='text-muted-foreground'>Sangat bergantung pada paket dan kesiapan data (logo, teks, foto produk). Rata-rata: Landing Page (3-5 hari kerja), Company Profile (7-10 hari kerja), Katalog (14 hari kerja). Kami pastikan tidak molor asalkan komunikasi lancar.</AccordionContent>
+                                <AccordionContent className='text-muted-foreground'>Sangat bergantung pada paket dan kesiapan data (logo, teks, foto produk). Rata-rata: paket Basic (3-5 hari kerja), Plus (7-10 hari kerja), Pro (14 hari kerja). Kami pastikan tidak molor asalkan komunikasi lancar.</AccordionContent>
                             </AccordionItem>
                             <AccordionItem
                                 value="item-2"
                                 className="border-b px-4 last:border-b-0 py-2"
                             >
                                 <AccordionTrigger className='font-semibold text-md'>Apakah pembayarannya bisa dicicil / bayar DP dulu?</AccordionTrigger>
-                                <AccordionContent className='text-muted-foreground'>Sangat bisa! Anda cukup membayar <strong className='text-primary'>DP 50%</strong> untuk memulai pengerjaan desain dan development. Sisanya 50% dilunasi saat website sudah selesai, direvisi, dan siap untuk dipublikasikan (live).</AccordionContent>
+                                <AccordionContent className='text-muted-foreground'>Sangat bisa! Anda cukup membayar <strong className='text-primary'>{DPPercentage}</strong> untuk memulai pengerjaan desain dan development. Sisanya {percentageAfterDP} dilunasi saat website sudah selesai, direvisi, dan siap untuk dipublikasikan (live).</AccordionContent>
                             </AccordionItem>
                             <AccordionItem
                                 value="item-3"
@@ -593,7 +597,7 @@ function HomePage() {
                     <p className="text-xl text-muted-foreground mb-12">Ceritakan masalah bisnis Anda di WhatsApp. Kami kasih saran strategi websitenya secara jujur. Kalau dirasa nggak cocok, nggak jadi beli juga nggak apa-apa.</p>
                     <div className="bg-background border border-blue-500 p-10 rounded-[40px] relative">
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 dark:bg-blue-500 px-4 py-1 rounded-full text-white font-bold text-xs uppercase">Admin Standby</div>
-                        <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20boleh%20tanya-tanya%20dulu%20soal%20bikin%20website?" target="_blank" className="inline-flex items-center gap-4 bg-blue-600 text-white px-4 py-3 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl font-black text-xl sm:text-2xl hover:bg-blue-700 transition shadow-2xl shadow-blue-500/40 transform hover:scale-105">
+                        <a href={textToWhatsapp} target="_blank" className="inline-flex items-center gap-4 bg-blue-600 text-white px-4 py-3 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl font-black text-xl sm:text-2xl hover:bg-blue-700 transition shadow-2xl shadow-blue-500/40 transform hover:scale-105">
                             Hubungi WhatsApp ➔
                         </a>
                         <p className="mt-6 text-slate-500 text-sm">&quot;Jangan tunggu kompetitor Anda yang duluan ambil pasar di Google.&quot;</p>
@@ -603,14 +607,14 @@ function HomePage() {
             {/* Footer */}
             <footer className="py-12 border-t border-secondary bg-background">
                 <div className="max-w-7xl mx-auto px-4 text-center">
-                    <div className="font-bold text-2xl text-primary mb-4">Cylare</div>
+                    <div className="font-bold text-2xl text-primary mb-4">{appName}</div>
                     <p className="text-slate-500 text-sm max-w-sm mx-auto mb-8">Partner strategi digital untuk bisnis yang serius ingin tumbuh. Bukan sekadar bikin web, tapi bangun aset jualan 24 jam.</p>
                     <div className="flex justify-center gap-6 text-muted-foreground text-xs mb-8">
                         <a href="https://www.instagram.com/lananglanusa/" target='_blank' className="hover:text-blue-400 transition">Instagram</a>
                         <a href="https://www.tiktok.com/@lananglanusa" target='_blank' className="hover:text-blue-400 transition">TikTok</a>
                         <a href="https://lananglanusa.my.id/" target='_blank' className="hover:text-blue-400 transition">Portfolio Lengkap</a>
                     </div>
-                    <p className="text-slate-700 text-[10px] uppercase tracking-widest font-bold">©2025 - {new Date().getFullYear()} cylare.com. All right reserved.</p>
+                    <p className="text-slate-700 text-[10px] uppercase tracking-widest font-bold">©2025 - {new Date().getFullYear()} {appName}. All right reserved.</p>
                 </div>
             </footer>
         </div>

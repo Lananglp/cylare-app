@@ -1,21 +1,20 @@
 'use client'
-import { CircleIcon, CreditCardIcon, LogOutIcon, MenuIcon, SettingsIcon, UserIcon } from "lucide-react"
+import { MenuIcon } from "lucide-react"
 import LanguageSwitcher from "../language-switcher"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
-import { authClient } from "@/lib/auth-client"
 import { useEffect, useRef, useState } from "react"
 import { Link } from "@/i18n/navigation"
 import Image from "next/image"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
 import { ThemeButton } from "../theme-button"
+import { textToWhatsapp } from "@/config/config"
 
 export const AppHeader = () => {
     const appName = process.env.NEXT_PUBLIC_APP_NAME;
-    const {
-        data: session,
-        isPending, //loading state
-    } = authClient.useSession();
+    // const {
+    //     data: session,
+    //     isPending, //loading state
+    // } = authClient.useSession();
 
     const navRef = useRef<HTMLElement>(null);
     const [open, setOpen] = useState(false);
@@ -52,7 +51,7 @@ export const AppHeader = () => {
                     <Link href="/" className="shrink-0 flex items-center gap-2 cursor-pointer">
                         <Image src="/logo.svg" alt="Logo" width={40} height={40} className='dark:invert' />
                         <div className='flex items-center gap-2'>
-                            <span className="block font-bold text-lg sm:text-xl tracking-tight text-primary">Cylare</span>
+                            <span className="block font-bold text-lg sm:text-xl tracking-tight text-primary">{appName}</span>
                             <span className='hidden sm:block text-[12px] sm:text-xs text-muted-foreground'>by Lanang Lanusa</span>
                         </div>
                     </Link>
@@ -66,7 +65,7 @@ export const AppHeader = () => {
                             <ThemeButton />
                             <LanguageSwitcher />
                         </div>
-                        <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20saya%20tertarik%20konsultasi%20website" target="_blank" className="bg-blue-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">Chat Sekarang</a>
+                        <a href={textToWhatsapp} target="_blank" className="bg-blue-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">Chat Sekarang</a>
                     </div>
                     {/* Mobile Menu */}
                     <Sheet open={open} onOpenChange={setOpen}>
@@ -78,7 +77,7 @@ export const AppHeader = () => {
                                 <SheetTitle className="shrink-0 flex items-center gap-2">
                                     <Image src="/logo.svg" alt="Logo" width={40} height={40} className='dark:invert' />
                                     <div className='flex items-center gap-2'>
-                                        <span className="block font-bold text-lg sm:text-xl tracking-tight text-primary">Cylare</span>
+                                        <span className="block font-bold text-lg sm:text-xl tracking-tight text-primary">{appName}</span>
                                     </div>
                                 </SheetTitle>
                             </SheetHeader>
@@ -88,7 +87,7 @@ export const AppHeader = () => {
                                 <a onClick={() => setOpen(false)} href="#simulasi" className="block px-3 py-2 text-muted-foreground font-medium">Simulasi Proyek</a>
                                 <a onClick={() => setOpen(false)} href="#proses" className="block px-3 py-2 text-muted-foreground font-medium">Cara Kerja</a>
                                 <a onClick={() => setOpen(false)} href="#harga" className="block px-3 py-2 text-muted-foreground font-medium">Harga</a>
-                                <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20saya%20tertarik%20konsultasi%20website" target="_blank" className="block text-center w-full sm:w-auto bg-blue-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">Chat Sekarang</a>
+                                <a href={textToWhatsapp} target="_blank" className="block text-center w-full sm:w-auto bg-blue-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">Chat Sekarang</a>
                                 <div className="mt-4 flex items-center gap-1">
                                     <ThemeButton />
                                     <LanguageSwitcher />
