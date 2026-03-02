@@ -607,8 +607,15 @@ function SidebarMenuSkeleton({
   showIcon?: boolean
 }) {
   // Random width between 50 to 90%.
-  const width = React.useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`
+  
+  // Set nilai default awal (misalnya "50%" atau "100%") untuk render pertama kali.
+  // Ini mencegah error hydration antara server dan client.
+  const [width, setWidth] = React.useState("50%")
+
+  React.useEffect(() => {
+    // Math.random aman dijalankan di dalam useEffect karena terjadi di client-side
+    // setelah komponen selesai di-render.
+    setWidth(`${Math.floor(Math.random() * 40) + 50}%`)
   }, [])
 
   return (
