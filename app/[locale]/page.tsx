@@ -29,7 +29,7 @@ const BackgroundGrid = () => {
     )
 }
 
-function page() {
+function HomePage() {
 
     // ===========================================================================
 
@@ -52,7 +52,7 @@ function page() {
                         Website Anda Harusnya Jadi <br /><span className="bg-linear-to-r from-blue-700 dark:from-blue-500 to-blue-600 dark:to-blue-400 bg-clip-text text-transparent">Mesin Penjualan 24/7.</span>
                     </h1>
                     <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground mb-10 leading-relaxed">
-                        Sudah bukan zamannya website cuma jadi brosur online yang sepi. Kami rancang alur website yang "memaksa" pengunjung penasaran dan berujung chat ke WhatsApp Anda.
+                        Sudah bukan zamannya website cuma jadi brosur online yang sepi. Kami rancang alur website yang &quot;memaksa&quot; pengunjung penasaran dan berujung chat ke WhatsApp Anda.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20saya%20mau%20konsultasi%20strategi%20website%20gratis" target="_blank" className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-xl shadow-blue-500/20">
@@ -89,7 +89,7 @@ function page() {
                             <div className="absolute hidden dark:block top-0 right-0 w-32 h-8 blur-3xl bg-blue-500/75 rounded-bl-full" />
                             <div className="text-3xl mb-4">🔍</div>
                             <h3 className="font-bold text-primary mb-2">Gak Muncul di Google</h3>
-                            <p className="text-sm text-muted-foreground">Saat orang ketik "Jasa [Bisnis Anda] terdekat", yang muncul kompetitor Anda. Anda kehilangan pembeli yang sudah siap bayar.</p>
+                            <p className="text-sm text-muted-foreground">Saat orang ketik &quot;Jasa [Bisnis Anda] terdekat&quot;, yang muncul kompetitor Anda. Anda kehilangan pembeli yang sudah siap bayar.</p>
                         </div>
                         <div className="bg-card border border-border hover:border-blue-500/50 transition duration-300 hover:-translate-y-2 p-6 rounded-2xl card-hover relative overflow-hidden">
                             <div className="absolute hidden dark:block top-0 right-0 w-32 h-8 blur-3xl bg-blue-500/75 rounded-bl-full" />
@@ -101,7 +101,7 @@ function page() {
                             <div className="absolute hidden dark:block top-0 right-0 w-32 h-8 blur-3xl bg-blue-500/75 rounded-bl-full" />
                             <div className="text-3xl mb-4">🏢</div>
                             <h3 className="font-bold text-primary mb-2">Terlihat Kurang Profesional</h3>
-                            <p className="text-sm text-muted-foreground">Klien B2B atau pembeli tiket besar biasanya minta "Boleh minta link websitenya?". Kalau jawabnya "Cek IG kita ya kak", tingkat trust langsung turun.</p>
+                            <p className="text-sm text-muted-foreground">Klien B2B atau pembeli tiket besar biasanya minta &quot;Boleh minta link websitenya?&quot;. Kalau jawabnya &quot;Cek IG kita ya kak&quot;, tingkat trust langsung turun.</p>
                         </div>
                     </div>
                 </div>
@@ -124,13 +124,13 @@ function page() {
                                     <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-secondary text-red-600 text-xl font-bold">✕</div>
                                     <div className="ml-4">
                                         <h3 className="text-lg font-bold">Copywriting Kaku</h3>
-                                        <p className="text-muted-foreground">"Kami adalah solusi terbaik bla bla..." Membosankan. Orang beli karena emosi, bukan data teknis.</p>
+                                        <p className="text-muted-foreground">&quot;Kami adalah solusi terbaik bla bla...&quot; Membosankan. Orang beli karena emosi, bukan data teknis.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start">
                                     <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-secondary text-red-600 text-xl font-bold">✕</div>
                                     <div className="ml-4">
-                                        <h3 className="text-lg font-bold">Tombol 'Beli' Gak Dipencet</h3>
+                                        <h3 className="text-lg font-bold">Tombol &quot;Beli&quot; Gak Dipencet</h3>
                                         <p className="text-muted-foreground">Susunan layout bikin bingung. User mau beli tapi gak tau harus klik mana. Hilang deh omzet.</p>
                                     </div>
                                 </div>
@@ -212,7 +212,7 @@ function page() {
                                     <div className="shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-secondary text-blue-600 text-xl font-bold">✓</div>
                                     <div>
                                         <h4 className="text-lg font-bold text-primary mb-1">Garansi Bug &amp; Error 30 Hari</h4>
-                                        <p className="text-muted-foreground">Setelah website live, kami garansi selama 30 hari. Ada error? Kami perbaiki gratis. Kami tidak akan "habis dibayar lalu hilang".</p>
+                                        <p className="text-muted-foreground">Setelah website live, kami garansi selama 30 hari. Ada error? Kami perbaiki gratis. Kami tidak akan &quot;habis dibayar lalu hilang&quot;.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
@@ -297,7 +297,7 @@ function page() {
                             </div>
                             <div>
                                 <p className="text-xs text-blue-600 uppercase font-bold mb-1">Solusi Cylare:</p>
-                                <p className="text-sm text-muted-foreground">Buat <span className="text-primary font-medium">Sales Page Premium</span>. Fokus pada desain elegan, pamerkan sertifikat BPOM, dan susun blok testimoni "Before/After" yang meyakinkan secara psikologis.</p>
+                                <p className="text-sm text-muted-foreground">Buat <span className="text-primary font-medium">Sales Page Premium</span>. Fokus pada desain elegan, pamerkan sertifikat BPOM, dan susun blok testimoni &quot;Before/After&quot; yang meyakinkan secara psikologis.</p>
                             </div>
                         </div>
                         {/* Simulation 3 */}
@@ -307,11 +307,11 @@ function page() {
                             <h3 className="text-xl font-bold text-primary mb-4">Profile Perusahaan Kredibel</h3>
                             <div className="mb-4">
                                 <p className="text-xs text-primary uppercase font-bold mb-1">Masalah Klien:</p>
-                                <p className="text-sm text-muted-foreground">Sering ditanya "Kliennya siapa aja?", repot kirim PDF portfolio bolak-balik via email ke calon korporat.</p>
+                                <p className="text-sm text-muted-foreground">Sering ditanya &quot;Kliennya siapa aja?&quot;, repot kirim PDF portfolio bolak-balik via email ke calon korporat.</p>
                             </div>
                             <div>
                                 <p className="text-xs text-blue-600 uppercase font-bold mb-1">Solusi Cylare:</p>
-                                <p className="text-sm text-muted-foreground">Bangun <span className="text-primary font-medium">Company Profile Berwibawa</span>. Tampilkan daftar klien besar, pamerkan metodologi kerja, dan sediakan form "Minta Penawaran" langsung di website.</p>
+                                <p className="text-sm text-muted-foreground">Bangun <span className="text-primary font-medium">Company Profile Berwibawa</span>. Tampilkan daftar klien besar, pamerkan metodologi kerja, dan sediakan form &quot;Minta Penawaran&quot; langsung di website.</p>
                             </div>
                         </div>
                     </div>
@@ -555,7 +555,7 @@ function page() {
                                 className="border-b px-4 last:border-b-0 py-2"
                             >
                                 <AccordionTrigger className='font-semibold text-md'>Gimana kalau saya tidak suka dengan desain awalnya?</AccordionTrigger>
-                                <AccordionContent className='text-muted-foreground'>Makanya di tahap ke-2, kita akan sepakati "Sketsa Kasar / Konsep" dulu sebelum kami ngoding. Jika desain awalnya kurang sreg, gunakan jatah revisi Anda. Kami sangat fleksibel dan terbuka pada masukan Anda.</AccordionContent>
+                                <AccordionContent className='text-muted-foreground'>Makanya di tahap ke-2, kita akan sepakati &quot;Sketsa Kasar / Konsep&quot; dulu sebelum kami ngoding. Jika desain awalnya kurang sreg, gunakan jatah revisi Anda. Kami sangat fleksibel dan terbuka pada masukan Anda.</AccordionContent>
                             </AccordionItem>
                             <AccordionItem
                                 value="item-5"
@@ -569,14 +569,14 @@ function page() {
                                 className="border-b px-4 last:border-b-0 py-2"
                             >
                                 <AccordionTrigger className='font-semibold text-md'>Kenapa revisinya dibatasi?</AccordionTrigger>
-                                <AccordionContent className='text-muted-foreground'>Untuk menjaga proyek tetap on-schedule dan sehat. Tapi tenang, "Revisi Mayor" itu artinya ubah layout besar. Kalau cuma ganti kata-kata atau ganti satu-dua foto, itu gratis selamanya selama masa maintenance. Kami fleksibel, bukan robot.</AccordionContent>
+                                <AccordionContent className='text-muted-foreground'>Untuk menjaga proyek tetap on-schedule dan sehat. Tapi tenang, &quot;Revisi Mayor&quot; itu artinya ubah layout besar. Kalau cuma ganti kata-kata atau ganti satu-dua foto, itu gratis selamanya selama masa maintenance. Kami fleksibel, bukan robot.</AccordionContent>
                             </AccordionItem>
                             <AccordionItem
                                 value="item-7"
                                 className="border-b px-4 last:border-b-0 py-2"
                             >
                                 <AccordionTrigger className='font-semibold text-md'>Gimana kalau saya nggak perpanjang maintenance?</AccordionTrigger>
-                                <AccordionContent className='text-muted-foreground'>Tidak apa-apa. Website tetap milik Anda 100%. Anda bisa mengelolanya sendiri. Maintenance berbayar hanya jika Anda ingin "terima beres" dan nggak mau pusing urusan teknis seperti update plugin, backup data, atau serangan malware.</AccordionContent>
+                                <AccordionContent className='text-muted-foreground'>Tidak apa-apa. Website tetap milik Anda 100%. Anda bisa mengelolanya sendiri. Maintenance berbayar hanya jika Anda ingin &quot;terima beres&quot; dan nggak mau pusing urusan teknis seperti update plugin, backup data, atau serangan malware.</AccordionContent>
                             </AccordionItem>
                         </Accordion>
                     </div>
@@ -596,7 +596,7 @@ function page() {
                         <a href="https://wa.me/628123456789?text=Halo%20Cylare,%20boleh%20tanya-tanya%20dulu%20soal%20bikin%20website?" target="_blank" className="inline-flex items-center gap-4 bg-blue-600 text-white px-4 py-3 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl font-black text-xl sm:text-2xl hover:bg-blue-700 transition shadow-2xl shadow-blue-500/40 transform hover:scale-105">
                             Hubungi WhatsApp ➔
                         </a>
-                        <p className="mt-6 text-slate-500 text-sm">"Jangan tunggu kompetitor Anda yang duluan ambil pasar di Google."</p>
+                        <p className="mt-6 text-slate-500 text-sm">&quot;Jangan tunggu kompetitor Anda yang duluan ambil pasar di Google.&quot;</p>
                     </div>
                 </div>
             </section>
@@ -619,4 +619,4 @@ function page() {
     )
 }
 
-export default page
+export default HomePage

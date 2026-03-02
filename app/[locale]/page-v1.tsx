@@ -11,7 +11,7 @@ import Link from 'next/link';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-function page() {
+function Page() {
     const language = useTranslations("HomePage");
     const { 
         data: session, 
@@ -736,4 +736,4 @@ function page() {
     )
 }
 
-export default page
+export default Page
