@@ -2,6 +2,7 @@
 import { AppHeader } from '@/components/app/header';
 import StaticSparkles from '@/components/static-sparkles';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { SparklesCore } from '@/components/ui/sparkles';
 import { CheckIcon, CircleCheckBigIcon } from 'lucide-react';
 
 function page() {
@@ -14,8 +15,8 @@ function page() {
             <AppHeader />
             {/* Hero Section */}
             <section className="relative isolate pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-                <StaticSparkles className="absolute inset-0 -z-30" />
-                {/* <div className="w-full absolute -z-30 inset-0">
+                {/* <StaticSparkles className="absolute inset-0 -z-30" /> */}
+                <div className="w-full absolute -z-30 inset-0">
                     <SparklesCore
                         id="sparkles-1"
                         background="transparent"
@@ -25,7 +26,7 @@ function page() {
                         className="w-full h-full"
                         particleColor="#FFFFFF"
                     />
-                </div> */}
+                </div>
                 <div className='absolute inset-0 -z-20 grid grid-cols-12 divide-x divide-slate-900'>
                     <div></div>
                     <div></div>
@@ -112,8 +113,8 @@ function page() {
             </section>
             {/* Problem */}
             <section id="masalah" className="relative isolate overflow-hidden py-20">
-                <StaticSparkles className="absolute inset-0 -z-30" />
-                {/* <div className="w-full absolute -z-30 inset-0">
+                {/* <StaticSparkles className="absolute inset-0 -z-30" /> */}
+                <div className="w-full absolute -z-30 inset-0">
                     <SparklesCore
                         id="sparkles-2"
                         background="transparent"
@@ -123,7 +124,7 @@ function page() {
                         className="w-full h-full"
                         particleColor="#FFFFFF"
                     />
-                </div> */}
+                </div>
                 <div className='absolute inset-0 -z-20 grid grid-cols-12 divide-x divide-slate-900'>
                     <div></div>
                     <div></div>
@@ -229,8 +230,8 @@ function page() {
 
             {/* SECTION 3 & 9: Why Us & Guarantees */}
             <section id="solusi" className="py-24 bg-slate-950 relative isolate overflow-hidden">
-                <StaticSparkles className="absolute inset-0 -z-30" />
-                {/* <div className="w-full absolute -z-30 inset-0">
+                {/* <StaticSparkles className="absolute inset-0 -z-30" /> */}
+                <div className="w-full absolute -z-30 inset-0">
                     <SparklesCore
                         id="sparkles-3"
                         background="transparent"
@@ -240,7 +241,7 @@ function page() {
                         className="w-full h-full"
                         particleColor="#FFFFFF"
                     />
-                </div> */}
+                </div>
                 <div className='absolute inset-0 -z-20 grid grid-cols-12 divide-x divide-slate-900'>
                     <div></div>
                     <div></div>
@@ -330,8 +331,8 @@ function page() {
             </section>
             {/* SECTION 6: Project Simulations */}
             <section id="simulasi" className="scroll-mt-28 relative isolate overflow-hidden py-24 bg-slate-950">
-                <StaticSparkles className="absolute inset-0 -z-30" />
-                {/* <div className="w-full absolute -z-30 inset-0">
+                {/* <StaticSparkles className="absolute inset-0 -z-30" /> */}
+                <div className="w-full absolute -z-30 inset-0">
                     <SparklesCore
                         id="sparkles-4"
                         background="transparent"
@@ -341,7 +342,7 @@ function page() {
                         className="w-full h-full"
                         particleColor="#FFFFFF"
                     />
-                </div> */}
+                </div>
                 <div className='absolute inset-0 -z-20 grid grid-cols-12 divide-x divide-slate-900'>
                     <div></div>
                     <div></div>
@@ -466,8 +467,8 @@ function page() {
             </section>
             {/* SECTION 8: Pricing & Maintenance */}
             <section id="harga" className="relative isolate overflow-hidden py-24 bg-slate-950">
-                <StaticSparkles className="absolute inset-0 -z-30" />
-                {/* <div className="w-full absolute -z-30 inset-0">
+                {/* <StaticSparkles className="absolute inset-0 -z-30" /> */}
+                <div className="w-full absolute -z-30 inset-0">
                     <SparklesCore
                         id="sparkles-5"
                         background="transparent"
@@ -477,7 +478,7 @@ function page() {
                         className="w-full h-full"
                         particleColor="#FFFFFF"
                     />
-                </div> */}
+                </div>
                 <div className='absolute inset-0 -z-20 grid grid-cols-12 divide-x divide-slate-900'>
                     <div></div>
                     <div></div>
@@ -628,7 +629,36 @@ function page() {
             </section>
 
             {/* SECTION 7: About / Personal Branding */}
-            <section className=" py-24">
+            <section className="relative isolate overflow-hidden py-24">
+                <div className="w-full absolute -z-30 inset-0">
+                    <SparklesCore
+                        id="sparkles-6"
+                        background="transparent"
+                        minSize={0.6}
+                        maxSize={1.4}
+                        particleDensity={20}
+                        className="w-full h-full"
+                        particleColor="#FFFFFF"
+                    />
+                </div>
+                <div className='absolute inset-0 -z-20 grid grid-cols-12 divide-x divide-slate-900'>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div className='absolute inset-0 -z-20 bg-radial from-transparent to-slate-950'/>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
+                    <div className="absolute top-20 left-[calc(50%-24rem)] w-72 h-72 bg-blue-400/10 rounded-full blur-[120px]" />
+                    <div className="absolute bottom-20 right-[calc(50%-24rem)] w-96 h-96 bg-blue-400/10 rounded-full blur-[120px]" />
+                </div>
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl font-bold text-white mb-8">Siapa di Balik Cylare?</h2>
                     <div className="relative isolate overflow-hidden p-8 md:p-12 rounded-[40px] bg-slate-900/30 border border-slate-800/50">
@@ -655,10 +685,10 @@ function page() {
             </section>
             {/* SECTION 4: Expanded FAQ */}
             <section className="relative isolate overflow-hidden py-24 bg-slate-950">
-                <StaticSparkles className="absolute inset-0 -z-30" />
-                {/* <div className="w-full absolute -z-30 inset-0">
+                {/* <StaticSparkles className="absolute inset-0 -z-30" /> */}
+                <div className="w-full absolute -z-30 inset-0">
                     <SparklesCore
-                        id="sparkles-6"
+                        id="sparkles-7"
                         background="transparent"
                         minSize={0.6}
                         maxSize={1.4}
@@ -666,7 +696,7 @@ function page() {
                         className="w-full h-full"
                         particleColor="#FFFFFF"
                     />
-                </div> */}
+                </div>
                 <div className='absolute inset-0 -z-20 grid grid-cols-12 divide-x divide-slate-900'>
                     <div></div>
                     <div></div>
