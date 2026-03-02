@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { CheckIcon, CircleCheckBigIcon } from 'lucide-react';
 
 const BackgroundGrid = () => {
+    
     return (
         <>
             <div className='absolute inset-0 -z-20 grid grid-cols-12 divide-x divide-input/50'>
