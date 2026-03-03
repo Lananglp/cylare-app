@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { DPPercentage, percentageAfterDP, textToWhatsapp } from '@/config/config';
 import { Link } from '@/i18n/navigation';
 import { CheckIcon, CircleCheckBigIcon, MoveRightIcon } from 'lucide-react';
+import Image from 'next/image';
 
 const BackgroundGrid = () => {
     
@@ -278,6 +279,17 @@ function HomePage() {
                             <p className="text-muted-foreground max-w-2xl mx-auto">Masih bingung website Anda nanti bentuknya seperti apa? Berikut bayangan bagaimana kami menyelesaikan masalah spesifik di industri yang berbeda.</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div className="bg-card dark:bg-secondary/30 rounded-3xl border border-border relative overflow-hidden">
+                                <Link href={"/design/2"} className='block aspect-video relative isolate overflow-hidden group'>
+                                    <div className='absolute inset-0 z-10 group-hover:bg-background/30 transition-colors duration-500' />
+                                    <Image src="/design/2/thumbnail.jpg" alt="Contoh Website Barbershop" width={600} height={600} className='group-hover:scale-110 transition duration-500' />
+                                </Link>
+                                <div className='p-6'>
+                                    <div className="inline-block px-3 py-1 bg-blue-500/10 text-blue-600 rounded-lg text-xs font-bold mb-4">Variant Paket Plus</div>
+                                    <h3 className="text-xl font-bold text-primary mb-4">Website Barbershop</h3>
+                                    <p className="text-sm text-muted-foreground">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos error dolore amet provident eaque quibusdam.</p>
+                                </div>
+                            </div>
                             {/* Simulation 1 */}
                             <div className="bg-card dark:bg-secondary/30 p-8 rounded-3xl border border-border relative group overflow-hidden">
                                 <div className="absolute hidden dark:block -top-12 right-0 w-40 h-24 blur-3xl bg-blue-500/50 rounded-bl-full" />

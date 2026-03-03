@@ -50,10 +50,10 @@ export const AppHeader = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center py-3">
                         <Link href="/" className="shrink-0 flex items-center gap-2 cursor-pointer">
-                            <Image src="/logo.svg" alt="Logo" width={40} height={40} className='dark:invert' />
+                            <Image src="/logo.svg" alt="Cylare Logo" width={40} height={40} className='dark:invert' />
                             <div className='flex items-center gap-2'>
-                                <span className="block font-bold text-lg sm:text-xl tracking-tight text-primary">{appName}</span>
-                                <span className='hidden sm:block text-[12px] sm:text-xs text-muted-foreground'>by Lanang Lanusa</span>
+                                <span className="font-bold text-lg sm:text-xl tracking-tight text-primary">{appName}</span>
+                                <span className='text-[12px] sm:text-xs text-muted-foreground'>by Lanang Lanusa</span>
                             </div>
                         </Link>
                         <ul className="hidden lg:flex space-x-4 items-center">
