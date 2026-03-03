@@ -7,7 +7,6 @@ import {
   Command,
   Frame,
   LifeBuoy,
-  LoaderCircle,
   Map,
   PieChart,
   Send,
