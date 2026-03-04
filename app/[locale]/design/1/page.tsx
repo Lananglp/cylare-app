@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
+import DemoWebView from '@/components/app/demo-web-view';
 
 // --- Tipe Data TypeScript ---
 type SymptomKey = 'tidak_dingin' | 'bocor' | 'berisik' | 'bau';
@@ -189,6 +190,9 @@ export default function JasaServisAC() {
 
     return (
         <div className="antialiased bg-slate-50 text-slate-800 selection:bg-blue-200 selection:text-blue-900">
+
+            <DemoWebView />
+
             {/* Embedded CSS for animations and specific styles */}
             <style dangerouslySetInnerHTML={{
                 __html: `
@@ -382,7 +386,7 @@ export default function JasaServisAC() {
                             </div>
                         </div>
 
-                        <div className="md:w-1/2 p-8 bg-slate-800/50 flex flex-col justify-center min-h-[350px]">
+                        <div className="md:w-1/2 p-8 bg-slate-800/50 flex flex-col justify-center min-h-87.5">
                             {activeSymptom ? (
                                 <div className="text-left animate-fade-in bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-inner">
                                     <div className="flex items-center gap-4 mb-5">
@@ -443,7 +447,7 @@ export default function JasaServisAC() {
                     </div>
                     <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 relative">
                         {/* Connecting Line (Desktop) */}
-                        <div className="hidden md:block absolute top-1/2 left-20 right-20 h-1 bg-blue-200 -z-0 transform -translate-y-1/2" />
+                        <div className="hidden md:block absolute top-1/2 left-20 right-20 h-1 bg-blue-200 z-0 transform -translate-y-1/2" />
                         {/* Step 1 */}
                         <div className="relative z-10 bg-white p-6 rounded-2xl shadow-md border border-slate-100 text-center w-full md:w-1/3">
                             <div className="w-12 h-12 bg-blue-600 text-white font-bold text-xl rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-sm">1</div>
@@ -508,7 +512,7 @@ export default function JasaServisAC() {
                                 </div>
                                 <div className="md:col-span-2">
                                     <label className="block text-sm font-bold text-slate-700 mb-2">Jumlah</label>
-                                    <div className="flex items-center bg-slate-50 border border-slate-200 rounded-xl overflow-hidden h-[54px]">
+                                    <div className="flex items-center bg-slate-50 border border-slate-200 rounded-xl overflow-hidden h-13.5">
                                         <button onClick={() => adjustQty(-1)} className="w-full h-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold transition focus:outline-none">-</button>
                                         <span className="w-16 text-center font-bold text-lg">{qty}</span>
                                         <button onClick={() => adjustQty(1)} className="w-full h-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold transition focus:outline-none">+</button>

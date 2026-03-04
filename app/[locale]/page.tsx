@@ -279,19 +279,55 @@ function HomePage() {
                             <p className="text-muted-foreground max-w-2xl mx-auto">Masih bingung website Anda nanti bentuknya seperti apa? Berikut bayangan bagaimana kami menyelesaikan masalah spesifik di industri yang berbeda.</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {/* Contoh Website Servis AC */}
+                            <div className="bg-card dark:bg-secondary/30 rounded-3xl border border-border relative overflow-hidden">
+                                <Link href={"/design/1"} className='block aspect-video relative isolate overflow-hidden group'>
+                                    <div className='absolute inset-0 z-10 group-hover:bg-background/30 transition-colors duration-500' />
+                                    <Image src="/design/1/thumbnail.jpg" alt="Contoh Website Servis AC" width={600} height={600} className='group-hover:scale-110 transition duration-500' />
+                                </Link>
+                                <div className='p-6'>
+                                    <div className="inline-block px-3 py-1 bg-blue-500/10 text-blue-600 rounded-lg text-xs font-bold mb-2">Studi Kasus</div>
+                                    <h3 className="text-xl font-bold text-primary mb-4">Website Servis AC</h3>
+                                    <p className="text-sm text-muted-foreground">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos error dolore amet provident eaque quibusdam.</p>
+                                </div>
+                            </div>
+                            {/* Contoh Website Barbershop */}
                             <div className="bg-card dark:bg-secondary/30 rounded-3xl border border-border relative overflow-hidden">
                                 <Link href={"/design/2"} className='block aspect-video relative isolate overflow-hidden group'>
                                     <div className='absolute inset-0 z-10 group-hover:bg-background/30 transition-colors duration-500' />
                                     <Image src="/design/2/thumbnail.jpg" alt="Contoh Website Barbershop" width={600} height={600} className='group-hover:scale-110 transition duration-500' />
                                 </Link>
                                 <div className='p-6'>
-                                    <div className="inline-block px-3 py-1 bg-blue-500/10 text-blue-600 rounded-lg text-xs font-bold mb-4">Variant Paket Plus</div>
+                                    <div className="inline-block px-3 py-1 bg-blue-500/10 text-blue-600 rounded-lg text-xs font-bold mb-2">Studi Kasus</div>
                                     <h3 className="text-xl font-bold text-primary mb-4">Website Barbershop</h3>
                                     <p className="text-sm text-muted-foreground">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos error dolore amet provident eaque quibusdam.</p>
                                 </div>
                             </div>
-                            {/* Simulation 1 */}
-                            <div className="bg-card dark:bg-secondary/30 p-8 rounded-3xl border border-border relative group overflow-hidden">
+                            {/* Contoh Website katalog baju */}
+                            <div className="bg-card dark:bg-secondary/30 rounded-3xl border border-border relative overflow-hidden">
+                                <Link href={"/design/3"} className='block aspect-video relative isolate overflow-hidden group'>
+                                    <div className='absolute inset-0 z-10 group-hover:bg-background/30 transition-colors duration-500' />
+                                    <Image src="/design/3/thumbnail.jpg" alt="Contoh Website katalog baju" width={600} height={600} className='group-hover:scale-110 transition duration-500' />
+                                </Link>
+                                <div className='p-6'>
+                                    <div className="inline-block px-3 py-1 bg-blue-500/10 text-blue-600 rounded-lg text-xs font-bold mb-2">Studi Kasus</div>
+                                    <h3 className="text-xl font-bold text-primary mb-4">Website Katalog Pakaian</h3>
+                                    <p className="text-sm text-muted-foreground">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos error dolore amet provident eaque quibusdam.</p>
+                                </div>
+                            </div>
+                            {/* Contoh Website GYM */}
+                            <div className="bg-card dark:bg-secondary/30 rounded-3xl border border-border relative overflow-hidden">
+                                <Link href={"/design/4"} className='block aspect-video relative isolate overflow-hidden group'>
+                                    <div className='absolute inset-0 z-10 group-hover:bg-background/30 transition-colors duration-500' />
+                                    <Image src="/design/4/thumbnail.jpg" alt="Contoh Website katalog baju" width={600} height={600} className='group-hover:scale-110 transition duration-500' />
+                                </Link>
+                                <div className='p-6'>
+                                    <div className="inline-block px-3 py-1 bg-blue-500/10 text-blue-600 rounded-lg text-xs font-bold mb-2">Studi Kasus</div>
+                                    <h3 className="text-xl font-bold text-primary mb-4">Website GYM</h3>
+                                    <p className="text-sm text-muted-foreground">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos error dolore amet provident eaque quibusdam.</p>
+                                </div>
+                            </div>
+                            {/* <div className="bg-card dark:bg-secondary/30 p-8 rounded-3xl border border-border relative group overflow-hidden">
                                 <div className="absolute hidden dark:block -top-12 right-0 w-40 h-24 blur-3xl bg-blue-500/50 rounded-bl-full" />
                                 <div className="inline-block px-3 py-1 bg-blue-500/10 text-blue-600 rounded-lg text-xs font-bold mb-4">Bisnis F&amp;B / Coffee Shop</div>
                                 <h3 className="text-xl font-bold text-primary mb-4">Sistem Pre-Order Otomatis</h3>
@@ -304,7 +340,6 @@ function HomePage() {
                                     <p className="text-sm text-muted-foreground">Buat <span className="text-primary font-medium">Landing Page Katalog</span>. Customer tinggal klik menu, isi data diri, lalu orderan terkirim ke WA admin dengan format yang rapi dan total harga otomatis.</p>
                                 </div>
                             </div>
-                            {/* Simulation 2 */}
                             <div className="bg-card dark:bg-secondary/30 p-8 rounded-3xl border border-border relative group overflow-hidden">
                                 <div className="absolute hidden dark:block -top-12 right-0 w-40 h-24 blur-3xl bg-blue-500/50 rounded-bl-full" />
                                 <div className="inline-block px-3 py-1 bg-blue-500/10 text-blue-600 rounded-lg text-xs font-bold mb-4">Skincare / Fashion Lokal</div>
@@ -318,7 +353,6 @@ function HomePage() {
                                     <p className="text-sm text-muted-foreground">Buat <span className="text-primary font-medium">Sales Page Premium</span>. Fokus pada desain elegan, pamerkan sertifikat BPOM, dan susun blok testimoni &quot;Before/After&quot; yang meyakinkan secara psikologis.</p>
                                 </div>
                             </div>
-                            {/* Simulation 3 */}
                             <div className="bg-card dark:bg-secondary/30 p-8 rounded-3xl border border-border relative group overflow-hidden">
                                 <div className="absolute hidden dark:block -top-12 right-0 w-40 h-24 blur-3xl bg-blue-500/50 rounded-bl-full" />
                                 <div className="inline-block px-3 py-1 bg-blue-500/10 text-blue-600 rounded-lg text-xs font-bold mb-4">Jasa / B2B Consultant</div>
@@ -331,7 +365,7 @@ function HomePage() {
                                     <p className="text-xs text-blue-600 uppercase font-bold mb-1">Solusi Cylare:</p>
                                     <p className="text-sm text-muted-foreground">Bangun <span className="text-primary font-medium">Company Profile Berwibawa</span>. Tampilkan daftar klien besar, pamerkan metodologi kerja, dan sediakan form &quot;Minta Penawaran&quot; langsung di website.</p>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </section>
@@ -402,7 +436,7 @@ function HomePage() {
                                 <h3 className="text-xl font-bold text-primary mb-2">Basic <span className='text-base font-semibold text-blue-600 dark:text-blue-300 align-middle ms-1'>Landing Page</span></h3>
                                 <p className="text-sm text-muted-foreground mb-6">Cocok untuk jualan 1 produk, validasi ide bisnis, atau halaman khusus untuk iklan FB/TikTok Ads.</p>
                                 {/* <div className="text-md font-medium text-primary">Mulai dari:</div> */}
-                                <div className="text-md font-medium line-through text-muted-foreground mb-0">Rp 1.500.000</div>
+                                <div className="text-md font-medium line-through text-muted-foreground mb-0">Rp 1.300.000</div>
                                 <div className="text-3xl font-extrabold text-primary mb-8">Rp 800.000</div>
                                 <ul className="space-y-4 mb-10 text-sm text-muted-foreground grow">
                                     <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> 1 Halaman</li>
@@ -425,12 +459,14 @@ function HomePage() {
                                 <h3 className="text-xl font-bold text-primary mb-2">Plus <span className='text-base font-semibold text-blue-600 dark:text-blue-300 align-middle ms-1'>Company Profile</span></h3>
                                 <p className="text-sm text-muted-foreground mb-6">Tampil lebih profesional dan meyakinkan. Cocok untuk profil perusahaan, web instansi, atau portofolio bisnis jasa.</p>
                                 {/* <div className="text-md font-medium text-primary">Mulai dari:</div> */}
-                                <div className="text-md font-medium line-through text-muted-foreground mb-0">Rp 2.700.000</div>
-                                <div className="text-3xl font-extrabold text-primary mb-8">Rp 1.300.000</div>
+                                <div className="text-md font-medium line-through text-muted-foreground mb-0">Rp 2.100.000</div>
+                                <div className="text-3xl font-extrabold text-primary mb-8">Rp 1.500.000</div>
                                 <ul className="space-y-4 mb-10 text-sm text-muted-foreground grow">
                                     <li className="text-md font-medium text-primary">Semua yang ada di Basic, Plus:</li>
                                     <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Sampai 5-6 Halaman</li>
                                     <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Dark Mode</li>
+                                    <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Sistem Keranjang Belanja</li>
+                                    <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Tombol & Order List ke Whatsapp</li>
                                     <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Tombol/Form Order WhatsApp</li>
                                     <li className="flex items-center gap-2 font-medium text-blue-600 dark:text-blue-400"><CheckIcon size={18} className='text-blue-600' /> Maksimal 5x Revisi</li>
                                     <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Basic SEO Setup (Google)</li>
@@ -446,14 +482,13 @@ function HomePage() {
                                 <h3 className="text-xl font-bold text-primary mb-2">Pro <span className='text-base font-semibold text-blue-600 dark:text-blue-300 align-middle ms-1'>E Commerce</span></h3>
                                 <p className="text-sm text-muted-foreground mb-6">Punya toko online sendiri atau coffee shop. Lengkap dengan fitur keranjang belanja</p>
                                 {/* <div className="text-md font-medium text-primary">Mulai dari:</div> */}
-                                <div className="text-md font-medium line-through text-muted-foreground mb-0">Rp 4.600.000</div>
-                                <div className="text-3xl font-extrabold text-primary mb-8">Rp 2.900.000</div>
+                                <div className="text-md font-medium line-through text-muted-foreground mb-0">Rp 2.900.000</div>
+                                <div className="text-3xl font-extrabold text-primary mb-8">Rp 2.300.000</div>
                                 <ul className="space-y-4 mb-10 text-sm text-muted-foreground grow">
                                     <li className="text-md font-medium text-primary">Semua yang ada di Plus, Pro:</li>
                                     <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Sampai 10-12 Halaman</li>
-                                    <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Sistem Keranjang Belanja</li>
-                                    <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Tombol & Order List ke Whatsapp</li>
-                                    <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Halaman Admin Manajemen Produk</li>
+                                    <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Kelola Produk/Katalog sendiri</li>
+                                    <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Admin Panel</li>
                                     <li className="flex items-center gap-2 font-medium text-blue-600 dark:text-blue-400"><CheckIcon size={18} className='text-blue-600' /> Maksimal 8x Revisi</li>
                                     <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Advanced SEO Setup (Google)</li>
                                     <li className="flex items-center gap-2"><CheckIcon size={18} className='text-blue-600' /> Tutorial Penggunaan Admin Panel</li>

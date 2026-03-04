@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import DemoWebView from '@/components/app/demo-web-view';
 
 export default function App() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -28,48 +29,10 @@ export default function App() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // ========== DEMO MODAL ==================
-
-    const [demoOpen, setDemoOpen] = useState(true);
-
     return (
         <div className="min-h-screen bg-black text-neutral-300 font-sans selection:bg-neutral-800 selection:text-white">
 
-            <Dialog open={demoOpen} onOpenChange={setDemoOpen}>
-                <DialogContent className="bg-neutral-950 border-neutral-900">
-                    <DialogHeader>
-                        <DialogTitle className='mb-3 md:text-xl text-white'>Contoh Studi Kasus Website</DialogTitle>
-                        <DialogDescription className='text-neutral-400'>
-                            Website yang sedang Anda lihat merupakan contoh studi kasus yang dibuat untuk memberikan gambaran konsep dan fitur.
-                        </DialogDescription>
-                    </DialogHeader>
-
-                    <div className="-mx-4 no-scrollbar max-h-[50vh] overflow-y-auto px-4 space-y-4 text-sm leading-relaxed text-neutral-400">
-                        <p>
-                            Halaman ini dirancang sebagai simulasi agar Anda dapat membayangkan
-                            bagaimana website bisnis Anda dapat terlihat dan bekerja secara nyata.
-                        </p>
-
-                        <p>
-                            Mulai dari struktur halaman, tampilan visual, hingga alur konversi
-                            menuju WhatsApp, semuanya dibuat untuk memberikan referensi sebelum
-                            Anda memulai proyek website Anda sendiri.
-                        </p>
-
-                        <p>
-                            Setiap bisnis memiliki kebutuhan yang berbeda, sehingga desain dan
-                            fitur nantinya dapat disesuaikan sepenuhnya dengan tujuan dan karakter
-                            brand Anda.
-                        </p>
-                    </div>
-
-                    <DialogFooter>
-                        <DialogClose asChild>
-                            <Button variant="outline">Saya Mengerti</Button>
-                        </DialogClose>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
+            <DemoWebView className="bg-neutral-950 border-neutral-900" />
 
             {/* HEADER & NAVIGATION (SEO: semantic <header> and <nav>) */}
             <header
